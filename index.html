@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FF6B35">
+<title>Callisthénie — Thierry</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#FFF9F5;color:#1a1a2e;overflow:hidden}
+:root{
+  --sun:#FF6B35;--sun2:#ff8c5a;--sky:#4ECDC4;--sky2:#3db8b0;--lemon:#FFE66D;--lemon2:#ffd93d;
+  --coral:#FF6B6B;--mint:#95E1D3;--purple:#A29BFE;--white:#FFFFFF;
+  --bg:#FFF9F5;--bg2:#FFF3EC;--bg3:#F0FFFE;
+  --txt:#1a1a2e;--txt2:#666;--txt3:#999;
+  --border:#f0e8e0;
+}
+#app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;background:var(--bg)}
+
+/* HEADER */
+#header{
+  background:linear-gradient(135deg,var(--sun) 0%,var(--coral) 50%,var(--purple) 100%);
+  padding:16px 16px 14px;flex-shrink:0;
+  position:relative;overflow:hidden;
+}
+#header::after{content:'💪';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.4}
+#header h1{font-size:16px;font-weight:700;color:#fff;letter-spacing:.2px}
+#header p{font-size:11px;color:rgba(255,255,255,.8);margin-top:3px}
+
+/* TABS */
+#tabs{display:flex;background:var(--white);overflow-x:auto;scrollbar-width:none;flex-shrink:0;border-bottom:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+#tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:11px 14px;font-size:12px;font-weight:600;color:var(--txt3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s}
+.tab.active{color:var(--sun);border-bottom-color:var(--sun)}
+
+/* CONTENT */
+#content{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
+
+/* SESSION HEADER */
+.session-header{padding:16px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.session-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.session-title{font-size:16px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.session-meta{font-size:11px;color:var(--txt2)}
+.session-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:4px}
+
+/* PROGRESS */
+.progress-wrap{padding:12px 16px 4px;background:var(--white);border-bottom:1px solid var(--border)}
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-lbl{font-size:12px;font-weight:600;color:var(--txt2)}
+.progress-pct{font-size:13px;font-weight:700;color:var(--sun)}
+.progress-track{background:#f0e8e0;border-radius:8px;height:8px;overflow:hidden}
+.progress-fill{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--sun),var(--coral));transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+/* WARMUP */
+.warm-section{padding:14px 16px;background:var(--bg3);border-bottom:1px solid #e0f5f3}
+.warm-title{font-size:11px;font-weight:700;color:var(--sky2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.warm-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(78,205,196,.15)}
+.warm-item:last-child{border:none}
+.warm-item-txt{flex:1;font-size:13px;color:var(--txt);font-weight:500}
+.warm-item-sub{font-size:11px;color:var(--txt3);font-weight:400}
+.warm-badge{background:var(--sky);color:var(--white);font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+
+/* EXERCISE CARDS */
+.exo-list{padding:12px 12px 20px}
+.exo-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.exo-card.open{border-color:var(--sun);box-shadow:0 4px 16px rgba(255,107,53,.15)}
+.exo-card.done{opacity:.6}
+.exo-card-header{display:flex;align-items:center;padding:13px 14px;gap:12px}
+.exo-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;transition:all .2s}
+.exo-num-default{background:#fff0eb;color:var(--sun)}
+.exo-num-done{background:linear-gradient(135deg,var(--sky),var(--mint));color:var(--white)}
+.exo-info{flex:1;min-width:0}
+.exo-name{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.exo-badge-row{display:flex;gap:5px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px}
+.badge-sets{background:#fff0eb;color:var(--sun)}
+.badge-target{background:#f0fffe;color:var(--sky2)}
+.exo-chevron{font-size:20px;color:var(--txt3);transition:transform .25s;line-height:1;flex-shrink:0}
+.exo-card.open .exo-chevron{transform:rotate(180deg);color:var(--sun)}
+
+/* DETAIL */
+.exo-detail{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.exo-card.open .exo-detail{display:block}
+.exo-detail-txt{font-size:13px;color:var(--txt2);line-height:1.65;margin-top:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.chip-sets{background:#fff0eb;color:var(--sun)}
+.chip-reps{background:#fff8e0;color:#b8860b}
+.chip-rest{background:#f0fffe;color:var(--sky2)}
+.btn-timer{display:flex;align-items:center;gap:8px;width:100%;background:linear-gradient(135deg,var(--sun),var(--coral));border:none;color:var(--white);font-size:13px;font-weight:700;padding:11px 16px;border-radius:12px;cursor:pointer;margin-top:12px;-webkit-appearance:none;justify-content:center}
+.btn-done{display:flex;align-items:center;gap:8px;width:100%;background:var(--white);border:1.5px solid var(--border);color:var(--txt2);font-size:13px;font-weight:600;padding:10px 16px;border-radius:12px;cursor:pointer;margin-top:8px;-webkit-appearance:none;justify-content:center;transition:all .2s}
+.btn-done.is-done{border-color:var(--sky);color:var(--sky2);background:#f0fffe}
+
+/* CONSEIL */
+.conseil{margin:0 12px 16px;background:linear-gradient(135deg,#fff8e0,#fff3ec);border-radius:16px;padding:13px 14px;font-size:12px;color:var(--txt);line-height:1.7;border:1px solid #ffe8cc}
+.conseil-title{font-size:11px;font-weight:700;color:var(--lemon2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+
+/* TIMER OVERLAY */
+#timer-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,46,.92);z-index:100;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(4px)}
+#timer-overlay.show{display:flex}
+#timer-label{font-size:14px;font-weight:700;color:var(--lemon);margin-bottom:12px;text-align:center;padding:0 24px;letter-spacing:.3px}
+#timer-ring{position:relative;width:190px;height:190px;margin:8px 0}
+#timer-ring svg{width:190px;height:190px;transform:rotate(-90deg)}
+#timer-ring .ring-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:10}
+#timer-ring .ring-fg{fill:none;stroke:var(--sun);stroke-width:10;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:0;transition:stroke-dashoffset .9s linear}
+#timer-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:58px;font-weight:800;color:#fff;line-height:1}
+#timer-sec{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:24px;margin-top:4px}
+#btn-stop{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:15px;font-weight:600;padding:13px 36px;border-radius:16px;cursor:pointer;-webkit-appearance:none}
+
+/* INSTALL HINT */
+#install-hint{background:linear-gradient(135deg,var(--sky),var(--mint));padding:9px 16px;text-align:center;flex-shrink:0}
+#install-hint p{font-size:12px;color:var(--white);font-weight:600}
+#install-hint small{font-size:10px;color:rgba(255,255,255,.8)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div id="install-hint">
+  <p>&#128241; Chrome → menu ⋮ → "Ajouter à l'écran d'accueil"</p>
+  <small>Fonctionne hors ligne · s'ouvre comme une appli</small>
+</div>
+
+<div id="header">
+  <h1>Callisthénie · Thierry</h1>
+  <p>Renforcement dos &amp; abdos · 12 semaines</p>
+</div>
+
+<div id="tabs">
+  <div class="tab active" onclick="showTab(0)">Séance A</div>
+  <div class="tab" onclick="showTab(1)">Séance B</div>
+  <div class="tab" onclick="showTab(2)">Séance C</div>
+  <div class="tab" onclick="showTab(3)">Séance D</div>
+  <div class="tab" onclick="showTab(4)">Cardio</div>
+  <div class="tab" onclick="showTab(5)">Étirem.</div>
+</div>
+
+<div id="content"></div>
+</div>
+
+<div id="timer-overlay">
+  <div id="timer-label">Repos</div>
+  <div id="timer-ring">
+    <svg viewBox="0 0 190 190"><circle class="ring-bg" cx="95" cy="95" r="85"/><circle class="ring-fg" id="ring-fg" cx="95" cy="95" r="85"/></svg>
+    <div id="timer-num">0</div>
+  </div>
+  <div id="timer-sec">secondes</div>
+  <button id="btn-stop" onclick="stopTimer()">Arrêter</button>
+</div>
+
+<script>
+var SESSIONS=[
+{id:'A',name:'Séance A',sub:'Dos & Gainage',tag:'Lundi · 7h15',icon:'🏋️',iconBg:'#fff0eb',conseil:'Rentrez le nombril vers la colonne à chaque exercice. Qualité plutôt que quantité — la technique parfaite protège votre dos.',
+warmup:[{n:'Rotations cervicales',d:'Lent, amplitude max',b:'2×10'},{n:'Cercles d\'épaules',d:'Avant puis arrière',b:'2×10'},{n:'Cat-Cow',d:'Synchronisé avec la respiration',b:'2×8'},{n:'Fentes statiques',d:'Genou à 90°',b:'1×5/jambe'},{n:'Montées de genoux douces',d:'Lever les genoux à 90°',b:'30 sec'}],
+exos:[
+{name:'Relevés de buste — chaise romaine',sets:'3 séries',reps:'10–12 rép.',rest:60,target:'Lombaires + érecteurs',detail:'Descente contrôlée sur 3 secondes. Ne pas hyper-étendre en haut. Garder le menton légèrement rentré.'},
+{name:'Superman',sets:'3 séries',reps:'12 rép.',rest:45,target:'Dos complet',detail:'Allongé ventre, lever bras + jambes opposés simultanément. Tenir 2 secondes en haut.'},
+{name:'Rangée inversée',sets:'3 séries',reps:'8–10 rép.',rest:60,target:'Rhomboïdes, trapèzes',detail:'Sous une table basse. Rétraction des omoplates. Corps gaîné, droit.'},
+{name:'Planche frontale',sets:'3 séries',reps:'30 sec',rest:45,target:'Transverse',detail:'Corps aligné tête-talon. Nombril rentré. Progresser vers 45 puis 60 secondes.'},
+{name:'Planche latérale',sets:'3 séries',reps:'20 sec/côté',rest:30,target:'Obliques, lombes',detail:'Hanches levées, corps droit. Ne pas laisser la hanche descendre.'},
+{name:'Bird-Dog',sets:'3 séries',reps:'10 rép./côté',rest:30,target:'Gainage profond',detail:'À 4 pattes : bras droit + jambe gauche. Dos plat. Éviter la rotation du bassin.'}
+]},
+{id:'B',name:'Séance B',sub:'Abdos & Lombaires',tag:'Mercredi · 7h15',icon:'🎯',iconBg:'#f0fffe',conseil:'Le vacuum abdominal renforce le transverse — muscle clé anti-maux de dos. Pratiquez-le aussi debout dans la journée.',
+warmup:[{n:'Rotations buste debout',d:'Hanches fixes',b:'2×10'},{n:'Cat-Cow',d:'Lent, respirez bien',b:'2×8'},{n:'Montées de genoux douces',d:'Rythme modéré',b:'30 sec'}],
+exos:[
+{name:'Relevés de jambes — chaise romaine',sets:'3 séries',reps:'10–15 rép.',rest:60,target:'Abdos bas',detail:'Pas de balancement. Contrôle total montée ET descente.'},
+{name:'Crunchs lents',sets:'3 séries',reps:'15 rép.',rest:45,target:'Abdos droits',detail:'Montée 2s, pause 1s, descente 2s. Pas de traction sur la nuque.'},
+{name:'Bicycle crunch',sets:'3 séries',reps:'12 rép./côté',rest:45,target:'Obliques',detail:'Rotation thoracique, pas cervicale. Rythme lent et contrôlé.'},
+{name:'Dead Bug',sets:'3 séries',reps:'8 rép./côté',rest:45,target:'Transverse',detail:'Dos PLAQUÉ au sol. Descendre bras opposé + jambe opposée lentement.'},
+{name:'Pont fessier',sets:'3 séries',reps:'15 rép.',rest:45,target:'Lombaires, fessiers',detail:'Monter en contractant les fessiers. Tenir 2 secondes en haut.'},
+{name:'Vacuum abdominal',sets:'3 séries',reps:'20 sec',rest:30,target:'Transverse abdominal',detail:'Expirer à fond, rentrer le nombril au maximum. Tenir. Faisable debout ou assis.'}
+]},
+{id:'C',name:'Séance C',sub:'Circuit complet',tag:'Vendredi · 7h15',icon:'⚡',iconBg:'#fff8e0',conseil:'3 tours du circuit avec 90 sec de repos entre les tours. Séance la plus intense — maintenez le rythme !',
+warmup:[{n:'Rotations épaules + buste',d:'Amplitude progressive',b:'2×10'},{n:'Cat-Cow',d:'Activez la colonne',b:'2×8'},{n:'Montées de genoux douces',d:'Accélérez progressivement',b:'45 sec'}],
+exos:[
+{name:'Marche rapide / Step-touch',sets:'3 tours',reps:'2 min',rest:0,target:'Cardio sans impact',detail:'Pas latéraux rythmés ou marche sur place. Bras actifs.'},
+{name:'Relevés de buste — chaise romaine',sets:'3 tours',reps:'12 rép.',rest:0,target:'Lombaires',detail:'Enchaîner directement. Qualité maintenue malgré la fatigue.'},
+{name:'Pompes',sets:'3 tours',reps:'10 rép.',rest:0,target:'Pectoraux, triceps',detail:'Modifier sur les genoux si nécessaire. Descendre jusqu\'au sol.'},
+{name:'Planche frontale',sets:'3 tours',reps:'30 sec',rest:0,target:'Gainage',detail:'Maintien strict. Accepter 20 sec si trop dur en fin de circuit.'},
+{name:'Superman',sets:'3 tours',reps:'12 rép.',rest:0,target:'Dos complet',detail:'Tenir 1 sec en haut à chaque rep.'},
+{name:'Steps latéraux',sets:'3 tours',reps:'30 sec',rest:90,target:'Cardio doux',detail:'Pas chassés gauche/droite. REPOS 90 SEC après, puis recommencer.'}
+]},
+{id:'D',name:'Séance D',sub:'Renforcement & Équilibre',tag:'Samedi · 8h30',icon:'⚖️',iconBg:'#f5f0ff',conseil:'Séance qualité : travaillez l\'équilibre et la symétrie droite/gauche pour corriger les déséquilibres posturaux.',
+warmup:[{n:'Fentes avant statiques',d:'Ouverture hanches',b:'1×5/jambe'},{n:'Cat-Cow',d:'Mobilité colonne',b:'2×8'},{n:'Rotations buste',d:'Amplitude croissante',b:'2×10'}],
+exos:[
+{name:'Relevés de jambes — chaise romaine',sets:'3 séries',reps:'12 rép.',rest:60,target:'Abdos bas',detail:'Amplitude complète. Pas de balancement. Expirer en montant.'},
+{name:'Good Morning debout',sets:'3 séries',reps:'15 rép.',rest:45,target:'Lombaires, ischio-j.',detail:'Debout, mains nuque, dos droit. Flexion hanches à 90°.'},
+{name:'Squat bulgare (chaise)',sets:'3 séries',reps:'8 rép./jambe',rest:60,target:'Fessiers, équilibre',detail:'Pied arrière sur le siège. Descente lente. Genou avant ne dépasse pas les orteils.'},
+{name:'Planche à rotation T',sets:'3 séries',reps:'8 rép./côté',rest:45,target:'Obliques, épaule',detail:'En position pompe, pivoter le tronc et lever un bras au ciel. Tenir 1 sec.'},
+{name:'Reverse Hyper',sets:'3 séries',reps:'12 rép.',rest:45,target:'Lombaires, fessiers',detail:'Ventre au sol, lever les deux jambes tendues. Tenir 2 sec.'},
+{name:'Étirements actifs',sets:'—',reps:'5 min',rest:0,target:'Mobilité',detail:'Pigeon 2×45s/côté + torsion spinale 2×45s/côté + enfant 1 min.'}
+]},
+{id:'CV',name:'Cardio',sub:'Cardio sol sans impact',tag:'Mardi · 7h15',icon:'🌊',iconBg:'#f0fffe',conseil:'100% tapis yoga, zéro impact genou, zéro déplacement. Effort qui permet de parler par courtes phrases.',
+warmup:[{n:'Montées de genoux lentes',d:'Lever les genoux à hauteur de hanche',b:'3 min'}],
+exos:[
+{name:'Mountain Climbers lents',sets:'4 séries',reps:'40 sec',rest:30,target:'Cardio, abdos',detail:'En planche, ramener un genou vers la poitrine lentement. Dos plat. Rythme régulier.'},
+{name:'Rowing assis (tapis)',sets:'4 séries',reps:'45 sec',rest:30,target:'Cardio, dos',detail:'Assis jambes tendues, simuler le rameur. Rythme soutenu.'},
+{name:'Planche dynamique in-out',sets:'3 séries',reps:'30 sec',rest:30,target:'Cardio, gainage',detail:'En planche, avancer les deux mains vers les pieds puis reculer.'},
+{name:'Montées de genoux accélérées',sets:'3 séries',reps:'40 sec',rest:30,target:'Cardio, cuisses',detail:'Rythme nettement plus soutenu. Bras actifs, talons ne touchent pas le sol.'}
+]},
+{id:'ET',name:'Étirements',sub:'Post-séance · 5 min',tag:'Après chaque séance',icon:'🌸',iconBg:'#fff0f5',conseil:'5 minutes d\'étirements réduisent les courbatures et maintiennent la mobilité. Ne les sautez pas !',
+warmup:[],
+exos:[
+{name:'Ischio-jambiers allongé',sets:'2 fois',reps:'30 sec/jambe',rest:0,target:'Arrière cuisse, dos',detail:'Allongé sur le dos, jambe tendue vers le haut. Tirer doucement vers soi.'},
+{name:'Torsion spinale allongée',sets:'2 fois',reps:'30 sec/côté',rest:0,target:'Lombaires, lombes',detail:'Sur le dos, genou ramené de l\'autre côté. Épaule au sol. Respiration profonde.'},
+{name:'Hip flexors (fente basse)',sets:'2 fois',reps:'30 sec/côté',rest:0,target:'Psoas, hanches',detail:'Psoas raccourci = cause fréquente de maux de dos. Hanches poussées en avant.'},
+{name:'Enfant (Balasana)',sets:'1 fois',reps:'60 sec',rest:0,target:'Décompression',detail:'À genoux, se pencher en avant, bras tendus. Laisser le poids étirer la colonne.'},
+{name:'Étirement dos complet',sets:'1 fois',reps:'45 sec',rest:0,target:'Dos, épaules, nuque',detail:'Doigts entrelacés, pousser les paumes en avant en arrondissant le dos.'}
+]}
+];
+
+var currentTab=0,doneExos={},timerInterval=null,timerTotal=0,timerLeft=0;
+
+function showTab(i){
+  currentTab=i;
+  document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+  renderSession(SESSIONS[i]);
+}
+
+function renderSession(s){
+  var content=document.getElementById('content');
+  var dk=doneExos[s.id]||{};
+  var doneCount=Object.keys(dk).length;
+  var total=s.exos.length;
+  var pct=total?Math.round(doneCount/total*100):0;
+
+  var html='<div class="session-header">'
+    +'<div class="session-icon" style="background:'+s.iconBg+'">'+s.icon+'</div>'
+    +'<div><div class="session-title">'+s.name+' — '+s.sub+'</div>'
+    +'<div class="session-meta"><span class="session-tag" style="background:#fff0eb;color:#FF6B35">'+s.tag+'</span>'+doneCount+'/'+total+' faits</div></div>'
+    +'</div>';
+
+  if(total>0){
+    html+='<div class="progress-wrap">'
+      +'<div class="progress-row"><span class="progress-lbl">Progression</span><span class="progress-pct">'+pct+'%</span></div>'
+      +'<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>'
+      +'</div>';
+  }
+
+  if(s.warmup.length>0){
+    html+='<div class="warm-section"><div class="warm-title">🔥 Échauffement</div>';
+    s.warmup.forEach(function(w){
+      html+='<div class="warm-item">'
+        +'<div class="warm-item-txt">'+w.n+'<br><span class="warm-item-sub">'+w.d+'</span></div>'
+        +'<span class="warm-badge">'+w.b+'</span></div>';
+    });
+    html+='</div>';
+  }
+
+  html+='<div class="exo-list">';
+  s.exos.forEach(function(ex,i){
+    var done=dk[i];
+    html+='<div class="exo-card'+(done?' done':'')+'" id="card-'+s.id+'-'+i+'" onclick="toggleCard(\''+s.id+'\','+i+')">'
+      +'<div class="exo-card-header">'
+      +'<div class="exo-num '+(done?'exo-num-done':'exo-num-default')+'">'+(done?'✓':(i+1))+'</div>'
+      +'<div class="exo-info">'
+      +'<div class="exo-name">'+ex.name+'</div>'
+      +'<div class="exo-badge-row">'
+      +'<span class="badge badge-sets">'+ex.sets+'</span>'
+      +(ex.target?'<span class="badge badge-target">'+ex.target+'</span>':'')
+      +'</div></div>'
+      +'<span class="exo-chevron">⌄</span></div>'
+      +'<div class="exo-detail">'
+      +'<div class="exo-detail-txt">'+ex.detail+'</div>'
+      +'<div class="chips">'
+      +'<span class="chip chip-sets">'+ex.sets+'</span>'
+      +'<span class="chip chip-reps">'+ex.reps+'</span>'
+      +(ex.rest>0?'<span class="chip chip-rest">Repos '+ex.rest+'s</span>':'')
+      +'</div>'
+      +(ex.rest>0?'<button class="btn-timer" onclick="event.stopPropagation();startTimer('+ex.rest+',\'⏱ Repos — '+ex.name.substring(0,22)+'...\')">⏱ Lancer le minuteur '+ex.rest+' sec</button>':'')
+      +'<button class="btn-done'+(done?' is-done':'')+'" onclick="event.stopPropagation();markDone(\''+s.id+'\','+i+')">'
+      +(done?'↩ Marquer non fait':'✓ Exercice terminé')
+      +'</button>'
+      +'</div></div>';
+  });
+  html+='</div>';
+
+  if(s.conseil){
+    html+='<div class="conseil"><div class="conseil-title">💡 Conseil</div>'+s.conseil+'</div>';
+  }
+
+  content.innerHTML=html;
+  content.scrollTop=0;
+}
+
+function toggleCard(sid,i){
+  var card=document.getElementById('card-'+sid+'-'+i);
+  var isOpen=card.classList.contains('open');
+  document.querySelectorAll('.exo-card.open').forEach(function(c){c.classList.remove('open');});
+  if(!isOpen)card.classList.add('open');
+}
+
+function markDone(sid,i){
+  if(!doneExos[sid])doneExos[sid]={};
+  if(doneExos[sid][i])delete doneExos[sid][i];
+  else doneExos[sid][i]=true;
+  var scrollY=document.getElementById('content').scrollTop;
+  renderSession(SESSIONS[currentTab]);
+  document.getElementById('content').scrollTop=scrollY;
+  var card=document.getElementById('card-'+sid+'-'+i);
+  if(card)card.classList.add('open');
+}
+
+function startTimer(sec,label){
+  timerTotal=sec;timerLeft=sec;
+  document.getElementById('timer-label').textContent=label||'Repos';
+  document.getElementById('timer-overlay').classList.add('show');
+  updateTimer();
+  clearInterval(timerInterval);
+  timerInterval=setInterval(function(){
+    timerLeft--;updateTimer();
+    if(timerLeft<=0){clearInterval(timerInterval);setTimeout(stopTimer,900);}
+  },1000);
+}
+
+function updateTimer(){
+  document.getElementById('timer-num').textContent=timerLeft;
+  var fg=document.getElementById('ring-fg');
+  var circ=534;
+  fg.style.strokeDashoffset=circ*(1-timerLeft/timerTotal);
+  fg.style.stroke=timerLeft<=5?'#FF6B6B':timerLeft<=10?'#FFE66D':'#FF6B35';
+}
+
+function stopTimer(){
+  clearInterval(timerInterval);
+  document.getElementById('timer-overlay').classList.remove('show');
+}
+
+renderSession(SESSIONS[0]);
+</script>
+</body>
+</html>
