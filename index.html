@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FF6B35">
+<title>Callisthénie — Thierry</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#FFF9F5;color:#1a1a2e;overflow:hidden}
+:root{
+  --sun:#FF6B35;--coral:#FF6B6B;--sky:#4ECDC4;--lemon:#ffd93d;--purple:#A29BFE;
+  --bg:#FFF9F5;--white:#fff;--txt:#1a1a2e;--txt2:#555;--txt3:#999;--border:#f0e8e0;
+}
+#app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;background:var(--bg)}
+#header{background:linear-gradient(135deg,#FF6B35 0%,#FF6B6B 50%,#A29BFE 100%);padding:16px;flex-shrink:0;position:relative;overflow:hidden}
+#header::after{content:'💪';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.4}
+#header h1{font-size:16px;font-weight:700;color:#fff}
+#header p{font-size:11px;color:rgba(255,255,255,.85);margin-top:3px}
+#tabs{display:flex;background:#fff;overflow-x:auto;scrollbar-width:none;flex-shrink:0;border-bottom:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+#tabs::-webkit-scrollbar{display:none}
+.tab{flex:1;min-width:0;padding:9px 4px;font-size:11px;font-weight:700;color:var(--txt3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;text-align:center;transition:color .2s;white-space:nowrap}
+.tab .tab-sub{display:block;font-size:9px;font-weight:500;margin-top:2px;color:var(--txt3)}
+.tab.active{color:var(--sun);border-bottom-color:var(--sun)}
+.tab.active .tab-sub{color:var(--sun)}
+#content{flex:1;overflow-y:auto;overflow-x:hidden}
+.session-header{padding:14px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.session-badge{width:48px;height:48px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;line-height:1.1}
+.session-badge .s-icon{font-size:22px}
+.session-badge .s-lbl{font-size:9px;color:#fff;opacity:.85;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.session-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.session-meta{font-size:11px;color:var(--txt2)}
+.session-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:4px}
+.progress-wrap{padding:10px 16px;background:#fff;border-bottom:1px solid var(--border)}
+.progress-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.progress-lbl{font-size:12px;font-weight:600;color:var(--txt2)}
+.progress-pct{font-size:13px;font-weight:700}
+.progress-track{background:var(--border);border-radius:8px;height:7px;overflow:hidden}
+.progress-fill{height:7px;border-radius:8px;transition:width .5s}
+.warm-section{padding:12px 16px;background:#F0FFFE;border-bottom:1px solid #ddf2ec}
+.warm-title{font-size:11px;font-weight:700;color:#3db8b0;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.warm-item{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid rgba(78,205,196,.15)}
+.warm-item:last-child{border:none}
+.warm-item-txt{flex:1;font-size:13px;color:var(--txt);font-weight:500}
+.warm-item-sub{font-size:11px;color:var(--txt3)}
+.warm-badge{color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.exo-list{padding:12px 12px 24px}
+.exo-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.exo-card.open{box-shadow:0 4px 18px rgba(0,0,0,.1)}
+.exo-card.done{opacity:.55}
+.exo-card-header{display:flex;align-items:center;padding:13px 14px;gap:12px}
+.exo-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.exo-num.is-done{background:linear-gradient(135deg,#4ECDC4,#95E1D3)!important;color:#fff!important}
+.exo-info{flex:1;min-width:0}
+.exo-name{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.badge-row{display:flex;gap:5px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px}
+.exo-chevron{font-size:20px;color:var(--txt3);transition:transform .25s;line-height:1;flex-shrink:0}
+.exo-card.open .exo-chevron{transform:rotate(180deg)}
+.exo-detail{display:none;border-top:1px solid var(--border)}
+.exo-card.open .exo-detail{display:block}
+.exo-img-wrap{background:#f8f8f8;display:flex;justify-content:center;align-items:center;padding:12px;border-bottom:1px solid var(--border);min-height:150px}
+.exo-img-wrap img{max-width:100%;max-height:175px;border-radius:8px;object-fit:contain}
+.exo-img-credit{font-size:9px;color:var(--txt3);text-align:center;padding:3px 12px 5px;background:#f8f8f8;border-bottom:1px solid var(--border)}
+.exo-body{padding:13px 14px}
+.steps-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.step{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start}
+.step-num{width:22px;height:22px;min-width:22px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step-txt{font-size:13px;color:var(--txt2);line-height:1.55}
+.tip-box{background:#fff8e0;border-radius:10px;padding:10px 12px;margin:8px 0 4px;font-size:12px;color:#8a7000;line-height:1.55;border-left:3px solid var(--lemon)}
+.err-box{background:#fff0f0;border-radius:10px;padding:10px 12px;margin:6px 0;font-size:12px;color:#c0392b;line-height:1.55;border-left:3px solid var(--coral)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.chip-r{background:#fff8e0;color:#b8860b}
+.chip-t{background:#f0fffe;color:#3db8b0}
+.btn-timer{display:flex;align-items:center;gap:8px;width:100%;border:none;color:#fff;font-size:13px;font-weight:700;padding:11px 16px;border-radius:12px;cursor:pointer;margin-top:12px;-webkit-appearance:none;justify-content:center}
+.btn-done{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border:1.5px solid var(--border);color:var(--txt2);font-size:13px;font-weight:600;padding:10px 16px;border-radius:12px;cursor:pointer;margin-top:8px;-webkit-appearance:none;justify-content:center}
+.btn-done.is-done{border-color:#4ECDC4;color:#3db8b0;background:#f0fffe}
+.conseil{margin:0 12px 16px;border-radius:16px;padding:13px 14px;font-size:12px;line-height:1.7;border:1px solid}
+.conseil-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+/* REPOS */
+.repos-wrap{padding:20px 16px}
+.repos-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.repos-icon{font-size:40px;margin-bottom:10px}
+.repos-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.repos-txt{font-size:13px;color:var(--txt2);line-height:1.6}
+.repos-list{text-align:left;margin-top:12px}
+.repos-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.repos-item:last-child{border:none}
+.repos-dot{width:8px;height:8px;min-width:8px;border-radius:50%;margin-top:4px}
+.repos-item-txt{font-size:13px;color:var(--txt2);line-height:1.5}
+.repos-item-sub{font-size:11px;color:var(--txt3);margin-top:2px}
+#timer-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,46,.93);z-index:100;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(4px)}
+#timer-overlay.show{display:flex}
+#timer-label{font-size:14px;font-weight:700;color:var(--lemon);margin-bottom:12px;text-align:center;padding:0 24px}
+#timer-ring{position:relative;width:190px;height:190px;margin:8px 0}
+#timer-ring svg{width:190px;height:190px;transform:rotate(-90deg)}
+#timer-ring .ring-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:10}
+#timer-ring .ring-fg{fill:none;stroke:#FF6B35;stroke-width:10;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:0;transition:stroke-dashoffset .9s linear}
+#timer-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:58px;font-weight:800;color:#fff;line-height:1}
+#timer-sec{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:24px;margin-top:4px}
+#btn-stop{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:15px;font-weight:600;padding:13px 36px;border-radius:16px;cursor:pointer;-webkit-appearance:none}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="header">
+  <h1>Callisthénie · Thierry</h1>
+  <p>Programme 12 semaines · 5 séances / semaine</p>
+</div>
+<div id="tabs"></div>
+<div id="content"></div>
+</div>
+<div id="timer-overlay">
+  <div id="timer-label">Repos</div>
+  <div id="timer-ring">
+    <svg viewBox="0 0 190 190"><circle class="ring-bg" cx="95" cy="95" r="85"/><circle class="ring-fg" id="ring-fg" cx="95" cy="95" r="85"/></svg>
+    <div id="timer-num">0</div>
+  </div>
+  <div id="timer-sec">secondes</div>
+  <button id="btn-stop" onclick="stopTimer()">Arrêter</button>
+</div>
+
+<script>
+var COLORS={
+  A:{bg:'#FF6B35',light:'#fff0eb',badge:'#FF6B35',grad:'linear-gradient(135deg,#FF6B35,#FF8C5A)'},
+  B:{bg:'#4ECDC4',light:'#f0fffe',badge:'#3db8b0',grad:'linear-gradient(135deg,#4ECDC4,#3db8b0)'},
+  C:{bg:'#A29BFE',light:'#f2f0ff',badge:'#7c73e6',grad:'linear-gradient(135deg,#A29BFE,#7c73e6)'},
+  D:{bg:'#FF6B6B',light:'#fff0f0',badge:'#e05555',grad:'linear-gradient(135deg,#FF6B6B,#e05555)'},
+  E:{bg:'#f5c200',light:'#fffbec',badge:'#b8900a',grad:'linear-gradient(135deg,#ffd93d,#f5c200)'},
+  REC:{bg:'#95E1D3',light:'#eefaf7',badge:'#3db8a0',grad:'linear-gradient(135deg,#95E1D3,#4ECDC4)'},
+};
+
+var IMG={
+  planche:      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Plank_exercise.jpg/320px-Plank_exercise.jpg',
+  superman:     'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Superman_exercise.jpg/320px-Superman_exercise.jpg',
+  birddog:      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bird_dog_exercise.jpg/320px-Bird_dog_exercise.jpg',
+  squat:        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Squat_position.jpg/240px-Squat_position.jpg',
+  lunge:        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Lunges.jpg/240px-Lunges.jpg',
+  pushup:       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Pushup_from_the_side.jpg/320px-Pushup_from_the_side.jpg',
+  crunch:       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Crunch_exercise.jpg/320px-Crunch_exercise.jpg',
+  bicycle:      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Bicycle_crunch_exercise_Sup_Gar_10.jpg/320px-Bicycle_crunch_exercise_Sup_Gar_10.jpg',
+  deadbug:      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dead_bug_exercise.jpg/320px-Dead_bug_exercise.jpg',
+  pont:         'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Hip-bridge-2.jpg/320px-Hip-bridge-2.jpg',
+  goodmorning:  'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Good_morning_exercise.jpg/240px-Good_morning_exercise.jpg',
+  mountainclimber:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Mountain_climbers.jpg/320px-Mountain_climbers.jpg',
+  dips:         'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Chair_dip_exercise.jpg/240px-Chair_dip_exercise.jpg',
+  rowing:       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Inverted_row.jpg/320px-Inverted_row.jpg',
+  corde:        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Skip_rope.jpg/240px-Skip_rope.jpg',
+  pigeon:       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pigeon_Pose.jpg/320px-Pigeon_Pose.jpg',
+  enfant:       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Balasana_or_Child%27s_Pose.jpg/320px-Balasana_or_Child%27s_Pose.jpg',
+  vacuum:       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Abdominal_vacuum.jpg/240px-Abdominal_vacuum.jpg',
+  reversehyper: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Back_extension.jpg/240px-Back_extension.jpg',
+  torsion:      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Supine_spinal_twist.jpg/320px-Supine_spinal_twist.jpg',
+  ischio:       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Stretching_a_hip_flexor.jpg/240px-Stretching_a_hip_flexor.jpg',
+  marche:       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Walking_man.jpg/240px-Walking_man.jpg',
+};
+
+var DAYS=[
+  {tab:'Lun',tabSub:'Séance A'},
+  {tab:'Mar',tabSub:'Séance B'},
+  {tab:'Mer',tabSub:'Séance C'},
+  {tab:'Jeu',tabSub:'Séance D'},
+  {tab:'Ven',tabSub:'Séance C'},
+  {tab:'Sam',tabSub:'Séance E'},
+  {tab:'Dim',tabSub:'Repos'},
+];
+
+var SESSIONS=[
+/* ─── A — LUNDI ─── */
+{id:'A',letter:'A',col:'A',day:'Lundi',time:'7h15',
+ name:'Force Dos & Gainage',desc:'Chaîne postérieure, stabilité vertébrale',
+ conseil:'Rentrez le nombril à chaque exercice. La technique protège votre dos — qualité avant quantité.',
+ warmup:[
+  {n:'Rotations cervicales',d:'Lent, amplitude max',b:'2×10'},
+  {n:'Cercles épaules',d:'Avant puis arrière',b:'2×10'},
+  {n:'Cat-Cow',d:'Synchronisé avec la respiration',b:'2×8'},
+  {n:'Rotations hanches debout',d:'Grands cercles, amplitude progressive',b:'2×10'},
+ ],
+ exos:[
+  {name:'Relevés de buste — chaise romaine',sets:'3 séries',reps:'10–12 rép.',rest:60,img:'reversehyper',
+   steps:['Allongé face en bas, chevilles bloquées.','Corps horizontal au départ.','Contractez les lombaires, remontez à l\'horizontale.','Descente lente sur 3 secondes.'],
+   tip:'💡 La descente lente est aussi importante que la montée.',
+   erreur:'⚠ Ne pas hyper-étendre — s\'arrêter à l\'horizontale.'},
+  {name:'Superman',sets:'3 séries',reps:'12 rép.',rest:45,img:'superman',
+   steps:['Allongé ventre, bras tendus devant.','Lever simultanément bras ET jambes en expirant.','Tenir 2 secondes, fessiers et dos contractés.','Redescente lente sans toucher le sol.'],
+   tip:'💡 Regard vers le sol — ne levez pas la tête.',
+   erreur:'⚠ Membres tendus — ne pliez ni coudes ni genoux.'},
+  {name:'Rangée inversée (table)',sets:'3 séries',reps:'8–10 rép.',rest:60,img:'rowing',
+   steps:['Sous une table solide, mains en prise.','Corps aligné, tirez la poitrine vers le bord.','Serrez les omoplates en fin de mouvement.','Descendez lentement, bras tendus.'],
+   tip:'💡 Plus le corps est horizontal, plus c\'est difficile.',
+   erreur:'⚠ Le dos ne s\'arrondit pas lors de la traction.'},
+  {name:'Planche frontale',sets:'3 séries',reps:'30 sec',rest:45,img:'planche',
+   steps:['Avant-bras au sol, coudes sous les épaules.','Corps aligné tête-talon, nombril rentré.','Fessiers contractés, respiration normale.','Progresser : +5 sec chaque semaine.'],
+   tip:'💡 Objectif : 60 sec en 6 semaines.',
+   erreur:'⚠ Si le dos s\'affaisse : posez les genoux.'},
+  {name:'Bird-Dog',sets:'3 séries',reps:'10 rép./côté',rest:30,img:'birddog',
+   steps:['À 4 pattes, dos plat comme une table.','Tendez bras droit + jambe gauche à l\'horizontale.','Tenir 2 secondes, ventre serré.','Alterner lentement.'],
+   tip:'💡 Imaginez un verre d\'eau sur votre dos — il ne doit pas tomber.',
+   erreur:'⚠ Le bassin ne pivote pas — hanches parallèles au sol.'},
+  {name:'Planche latérale',sets:'3 séries',reps:'20 sec/côté',rest:30,img:'planche',
+   steps:['Sur le côté, appui sur l\'avant-bras.','Lever les hanches — corps aligné.','Bras libre tendu vers le plafond.','Tenir sans laisser les hanches descendre.'],
+   tip:'💡 Version genoux : tout aussi efficace pour commencer.',
+   erreur:'⚠ Hanches qui s\'affaissent = obliques qui ne travaillent plus.'},
+ ]},
+
+/* ─── B — MARDI ─── */
+{id:'B',letter:'B',col:'B',day:'Mardi',time:'7h15',
+ name:'Abdominaux & Lombaires',desc:'Sangle abdominale profonde, gainage dynamique',
+ conseil:'Le vacuum abdominal renforce le transverse — votre gaine naturelle. Pratiquez-le aussi debout dans la journée.',
+ warmup:[
+  {n:'Rotations buste debout',d:'Hanches fixes, regard suit',b:'2×10'},
+  {n:'Cat-Cow',d:'Lent, respirez',b:'2×8'},
+  {n:'Rotations bras complets',d:'Grands cercles avant puis arrière',b:'2×10'},
+ ],
+ exos:[
+  {name:'Relevés de jambes — chaise romaine',sets:'3 séries',reps:'10–15 rép.',rest:60,img:'reversehyper',
+   steps:['Dos appuyé, bras accrochés aux poignées.','Jambes fléchies (début) ou tendues (avancé).','Monter les genoux vers la poitrine en expirant.','Descente lente — ne lâchez pas !'],
+   tip:'💡 Genoux fléchis = même bénéfice, moins de difficulté.',
+   erreur:'⚠ Pas d\'élan — tout vient des abdominaux.'},
+  {name:'Crunchs lents',sets:'3 séries',reps:'15 rép.',rest:45,img:'crunch',
+   steps:['Allongé, genoux à 90°, mains derrière les oreilles.','Montée lente 2 sec — seules les épaules décollent.','Pause 1 sec en haut, contraction maximale.','Descente 2 sec — tête ne touche pas le sol.'],
+   tip:'💡 Distance d\'un poing entre menton et poitrine.',
+   erreur:'⚠ Ne tirez pas sur la nuque — coudes ouverts.'},
+  {name:'Bicycle Crunch',sets:'3 séries',reps:'12 rép./côté',rest:45,img:'bicycle',
+   steps:['Allongé, jambes en l\'air à 90°.','Coude droit vers genou gauche en rotant le thorax.','Simultanément : jambe droite tendue vers l\'avant.','Alterner lentement.'],
+   tip:'💡 Rythme lent = obliques sollicités. Rapide = élan inutile.',
+   erreur:'⚠ Le cou et la nuque ne bougent pas.'},
+  {name:'Dead Bug',sets:'3 séries',reps:'8 rép./côté',rest:45,img:'deadbug',
+   steps:['Allongé, DOS PLAQUÉ au sol — règle absolue.','Bras au plafond, genoux à 90°.','Descendre bras droit + jambe gauche en expirant.','Si le dos décolle : réduire l\'amplitude.'],
+   tip:'💡 Meilleur exercice pour la stabilité lombaire.',
+   erreur:'⚠ Le dos NE DOIT PAS décoller du sol.'},
+  {name:'Pont fessier',sets:'3 séries',reps:'15 rép.',rest:45,img:'pont',
+   steps:['Allongé, genoux à 90°, pieds à plat.','Pousser à travers les talons pour lever les hanches.','Contracter les fessiers — tenir 2 sec en haut.','Descendre vertèbre par vertèbre.'],
+   tip:'💡 Pour intensifier : résistez avec les genoux vers l\'extérieur.',
+   erreur:'⚠ Le mouvement vient des fessiers, pas du bas du dos.'},
+  {name:'Vacuum abdominal',sets:'3 séries',reps:'20 sec',rest:30,img:'vacuum',
+   steps:['Debout, assis ou à 4 pattes.','Expirer à fond, vider complètement les poumons.','Rentrer le nombril vers la colonne au maximum.','Tenir 20 sec, respiration courte et superficielle.'],
+   tip:'💡 L\'exercice ventre plat n°1. À refaire au bureau dans la journée.',
+   erreur:'⚠ C\'est une rétraction vers l\'intérieur, pas une montée.'},
+ ]},
+
+/* ─── C — MERCREDI & VENDREDI ─── */
+{id:'C',letter:'C',col:'C',day:'Mer & Ven',time:'7h15',
+ name:'Circuit Métabolique',desc:'Cardio + force — dépense calorique maximale',
+ conseil:'3 tours complets, 90 sec de repos entre chaque tour. Gardez un rythme régulier du début à la fin.',
+ warmup:[
+  {n:'Rotations épaules + buste',d:'Amplitude progressive',b:'2×10'},
+  {n:'Cat-Cow',d:'Activez la colonne',b:'2×8'},
+  {n:'Rotations bras + buste',d:'Amplitude progressive',b:'2×10'},
+ ],
+ exos:[
+  {name:'Montées de bras énergiques',sets:'3 tours',reps:'2 min',rest:0,img:'rowing',
+   steps:['Debout, pieds écartés largeur épaules, légère flexion des hanches.','Lever alternativement les bras au-dessus de la tête à rythme soutenu.','Bras actifs, épaules engagées — comme pour attraper quelque chose en hauteur.','Rythme continu sur 2 minutes, respiration régulière.'],
+   tip:'💡 Cardio haut du corps sans impact — fréquence cible ~120 bpm.',
+   erreur:'⚠ Ne bloquez pas la respiration — gardez un rythme respiratoire régulier.'},
+  {name:'Rowing assis (tapis)',sets:'3 tours',reps:'45 sec',
