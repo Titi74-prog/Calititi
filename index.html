@@ -256,4 +256,284 @@ var SESSIONS=[
    steps:['Debout, pieds écartés largeur épaules, légère flexion des hanches.','Lever alternativement les bras au-dessus de la tête à rythme soutenu.','Bras actifs, épaules engagées — comme pour attraper quelque chose en hauteur.','Rythme continu sur 2 minutes, respiration régulière.'],
    tip:'💡 Cardio haut du corps sans impact — fréquence cible ~120 bpm.',
    erreur:'⚠ Ne bloquez pas la respiration — gardez un rythme respiratoire régulier.'},
-  {name:'Rowing assis (tapis)',sets:'3 tours',reps:'45 sec',
+  {name:'Rowing assis (tapis)',sets:'3 tours',reps:'45 sec',rest:0,img:'rowing',
+   steps:['Assis sur le tapis, jambes tendues devant soi.','Se pencher légèrement en avant, bras tendus.','Tirer les deux bras vers les hanches en se redressant — imite le rameur.','Répéter en continu à rythme soutenu.'],
+   tip:'💡 Contractez le dos à chaque traction — cardio ET renforcement dos en même temps.',
+   erreur:'⚠ Gardez un galbe naturel dans le dos — ne vous affaissez pas.'},
+  {name:'Pompes',sets:'3 tours',reps:'10 rép.',rest:0,img:'pushup',
+   steps:['Mains largeur épaules, corps aligné (ou genoux).','Descendre coudes à 45°, poitrine au ras du sol.','Pousser en expirant, corps gaîné.','Qualité avant vitesse.'],
+   tip:'💡 Version genoux : tout aussi efficace.',
+   erreur:'⚠ Les hanches ne montent pas — corps comme une planche.'},
+  {name:'Planche dynamique in-out',sets:'3 tours',reps:'30 sec',rest:0,img:'planche',
+   steps:['Position planche bras tendus.','Avancer les deux mains vers les pieds en fléchissant les hanches.','Revenir en position planche en un seul mouvement fluide.','1 aller-retour toutes les 2-3 secondes.'],
+   tip:'💡 Ce mouvement demande souplesse ET gainage — ne forcez pas l\'amplitude au début.',
+   erreur:'⚠ Ne relâchez pas le gainage lors du retour — le dos reste plat.'},
+  {name:'Planche frontale',sets:'3 tours',reps:'30 sec',rest:0,img:'planche',
+   steps:['Avant-bras au sol, corps aligné.','Nombril rentré, fessiers contractés.','Respirez lentement.','Genoux au sol si la forme se dégrade.'],
+   tip:'💡 20 sec en bonne forme vaut mieux que 30 sec en mauvaise.',
+   erreur:'⚠ Ne retenez pas votre respiration.'},
+  {name:'Pont fessier',sets:'3 tours',reps:'20 rép.',rest:90,img:'pont',
+   steps:['Allongé sur le dos, pieds à plat largeur bassin.','Pousser à travers les talons pour lever les hanches.','Contracter les fessiers — tenir 2 sec en haut.','Descendre lentement. Puis 90 sec de repos complet.'],
+   tip:'💡 Fin de tour : 90 sec de repos, puis recommencer.',
+   erreur:'⚠ Le mouvement vient des fessiers et des talons, pas du dos.'},
+ ]},
+
+/* ─── D — JEUDI ─── */
+{id:'D',letter:'D',col:'D',day:'Jeudi',time:'7h15',
+ name:'Haut du Corps & Équilibre',desc:'Bras, épaules, dos — silhouette affinée',
+ conseil:'Notez vos pompes maximum à chaque séance D — c\'est votre baromètre de progression sur 12 semaines.',
+ warmup:[
+  {n:'Rotations épaules + poignets',d:'Amplitude complète',b:'2×10'},
+  {n:'Cat-Cow',d:'Mobilité colonne',b:'2×8'},
+  {n:'Rotations hanches debout',d:'Grands cercles, amplitude progressive',b:'2×10'},
+ ],
+ exos:[
+  {name:'Pompes — série maximale',sets:'4 séries',reps:'max rép.',rest:60,img:'pushup',
+   steps:['Corps aligné, mains largeur épaules.','Descendre jusqu\'au sol à chaque répétition.','Garder 1-2 reps en réserve.','NOTER le nombre : indicateur de progression.'],
+   tip:'💡 Progressez de 1-2 reps par semaine. En 12 semaines : +15 reps minimum.',
+   erreur:'⚠ Ne sacrifiez jamais la qualité pour le nombre.'},
+  {name:'Dips sur chaise',sets:'3 séries',reps:'8–12 rép.',rest:60,img:'dips',
+   steps:['Mains sur le bord de l\'assise, fesses dans le vide.','Fléchir les coudes pour descendre.','Jambes fléchies (facile) ou tendues (difficile).','Pousser pour remonter en expirant.'],
+   tip:'💡 Cible les triceps — résultats visibles en 4-6 semaines.',
+   erreur:'⚠ Ne pas laisser les coudes s\'écarter vers les côtés.'},
+  {name:'Rangée inversée (table)',sets:'3 séries',reps:'8–10 rép.',rest:60,img:'rowing',
+   steps:['Sous une table, mains en prise, corps aligné.','Tirer la poitrine vers le bord de la table.','Serrer les omoplates en fin de mouvement.','Descendre lentement.'],
+   tip:'💡 Plus le corps est horizontal, plus l\'exercice est intense.',
+   erreur:'⚠ Le dos ne s\'arrondit pas lors de la traction.'},
+  {name:'Pike Push-ups (épaules)',sets:'3 séries',reps:'6–8 rép.',rest:60,img:'pushup',
+   steps:['En V inversé — fesses hautes, bras et jambes tendus.','Fléchir les bras pour amener la tête vers le sol.','Coudes légèrement vers l\'extérieur.','Pousser pour revenir au V inversé.'],
+   tip:'💡 Meilleur exercice épaules sans matériel.',
+   erreur:'⚠ Ne pas laisser les hanches descendre lors du mouvement.'},
+  {name:'Planche à rotation T',sets:'3 séries',reps:'8 rép./côté',rest:45,img:'planche',
+   steps:['Position pompe, bras tendus.','Pivoter le buste, ouvrir le bras droit vers le plafond.','Corps en T — tenir 1 seconde.','Revenir et alterner.'],
+   tip:'💡 Version facilitée : genoux au sol.',
+   erreur:'⚠ Les hanches ne chutent pas lors de la rotation.'},
+  {name:'Good Morning',sets:'3 séries',reps:'12 rép.',rest:45,img:'goodmorning',
+   steps:['Debout, mains croisées derrière la tête, dos rigide.','Pencher le buste depuis les hanches jusqu\'à 90°.','Sentir l\'étirement des ischio-jambiers.','Revenir en poussant les hanches vers l\'avant.'],
+   tip:'💡 L\'étirement à la descente = la bonne sensation.',
+   erreur:'⚠ Ne JAMAIS arrondir le dos — réduire l\'amplitude si nécessaire.'},
+ ]},
+
+/* ─── E — SAMEDI ─── */
+{id:'E',letter:'E',col:'E',day:'Samedi',time:'8h30',
+ name:'Full Body + Cardio Sol',desc:'Force complète, cardio sans impact, mobilité',
+ conseil:'Séance du samedi matin à tête reposée : qualité et intensité maximales. Finissez par les étirements complets.',
+ warmup:[
+  {n:'Rotations articulaires complètes',d:'Nuque → chevilles',b:'1 tour'},
+  {n:'Cat-Cow',d:'Réveil de la colonne',b:'2×8'},
+  {n:'Cat-Cow',d:'Réveil de la colonne',b:'2×8'},
+  {n:'Rotations bras + buste',d:'Grands cercles, amplitude progressive',b:'2×10'},
+ ],
+ exos:[
+  {name:'Rowing assis — intervalles',sets:'6 rounds',reps:'40s vif / 20s repos',rest:0,img:'rowing',
+   steps:['Assis sur le tapis, jambes tendues, bras tendus vers l\'avant.','40 sec : tirer les bras vers les hanches en se redressant énergiquement.','20 sec : pause, respiration.','6 rounds = 6 minutes. Cardio haut du corps sans impact.'],
+   tip:'💡 Intensité 7-8/10 sur les phases actives. Cible ~120-130 bpm.',
+   erreur:'⚠ Ne pas arrondir le dos à la phase de flexion vers l\'avant.'},
+  {name:'Reverse Hyper',sets:'4 séries',reps:'12 rép.',rest:60,img:'reversehyper',
+   steps:['Allongé ventre sur le tapis, bras repliés sous le front.','Jambes tendues et jointes, expirer.','Lever les deux jambes tendues le plus haut possible en contractant les fessiers.','Tenir 2 sec en haut — descendre lentement.'],
+   tip:'💡 Protège et renforce les lombaires sans pression sur la colonne.',
+   erreur:'⚠ Ne pliez pas les genoux — les jambes restent tendues tout au long.'},
+  {name:'Pompes — série max',sets:'3 séries',reps:'max rép.',rest:60,img:'pushup',
+   steps:['Qualité maximale à chaque répétition.','Garder 1-2 reps en réserve.','Comparer avec le score de la séance D.','Progresser de 1-2 reps par semaine.'],
+   tip:'💡 Comparez avec votre score du jeudi.',
+   erreur:'⚠ Qualité avant quantité.'},
+  {name:'Superman',sets:'3 séries',reps:'12 rép.',rest:45,img:'superman',
+   steps:['Ventre au sol, bras tendus devant.','Lever bras et jambes simultanément.','Tenir 2 secondes en haut.','Descente sans toucher le sol.'],
+   tip:'💡 Tenir 2 sec en haut = qualité.',
+   erreur:'⚠ Membres tendus — pas de pliage.'},
+  {name:'Pigeon — étirement hanches',sets:'2 fois',reps:'60 sec/côté',rest:0,img:'pigeon',
+   steps:['Jambe avant fléchie à 90°, jambe arrière tendue.','Avant-bras au sol pour s\'abaisser.','Relâcher le poids du corps vers le bas.','Respirez profondément dans la position.'],
+   tip:'💡 Étirement clé pour contrebalancer le travail des jambes.',
+   erreur:'⚠ Ne forcez pas — respirez dans la position.'},
+  {name:'Posture de l\'enfant (Balasana)',sets:'1 fois',reps:'90 sec',rest:0,img:'enfant',
+   steps:['À genoux, bras tendus devant, front au sol.','Relâcher complètement le dos.','Chaque expiration allonge la colonne.','Rester le plus longtemps possible.'],
+   tip:'💡 Décompression vertébrale active.',
+   erreur:'⚠ Genoux douloureux : serviette pliée sous les fesses.'},
+ ]},
+
+/* ─── DIMANCHE REPOS ─── */
+{id:'DIM',letter:'🌿',col:'REC',day:'Dimanche',time:'Pas d\'horaire',
+ name:'Récupération Active',desc:'Marche douce + étirements complets',
+ conseil:'La récupération fait partie de l\'entraînement. Ce n\'est pas du temps perdu — c\'est ici que le muscle se reconstruit.',
+ warmup:[],
+ repos:true,
+ exos:[
+  {name:'Marche douce extérieure',sets:'—',reps:'20–30 min',rest:0,img:'marche',
+   steps:['Rythme tranquille, pas de performance.','La lumière naturelle du matin régule le sommeil et l\'humeur.','Respiration libre, épaules relâchées.','Profitez — c\'est la seule consigne.'],
+   tip:'💡 La marche matinale améliore le sommeil du soir et réduit le cortisol.',
+   erreur:''},
+  {name:'Torsion spinale allongée',sets:'2 fois',reps:'45 sec/côté',rest:0,img:'torsion',
+   steps:['Allongé sur le dos, bras en croix.','Ramener le genou droit de l\'autre côté.','Épaule droite reste au sol, regardez à gauche.','Laissez la gravité faire le travail — 45 sec.'],
+   tip:'💡 Inspirez en position neutre, expirez en laissant le genou descendre.',
+   erreur:'⚠ Ne forcez pas le genou — la gravité suffit.'},
+  {name:'Étirement ischio-jambiers',sets:'2 fois',reps:'40 sec/jambe',rest:0,img:'ischio',
+   steps:['Allongé, jambe gauche fléchie, pied à plat.','Lever la jambe droite tendue vers le plafond.','Attraper le mollet ou la cuisse, pas le pied.','Tirer doucement vers vous, dos plat.'],
+   tip:'💡 Respirez dans l\'étirement — chaque expiration relâche le muscle.',
+   erreur:'⚠ Ne forcez jamais l\'amplitude — douleur = trop loin.'},
+  {name:'Pigeon (hanches)',sets:'2 fois',reps:'60 sec/côté',rest:0,img:'pigeon',
+   steps:['Jambe avant fléchie à 90°, jambe arrière tendue.','S\'abaisser sur les avant-bras ou front au sol.','Relâcher le poids du corps complètement.','Respiration profonde — 60 secondes.'],
+   tip:'💡 Le psoas et les hanches se relâchent ici — crucial pour le dos.',
+   erreur:'⚠ Si douleur au genou : option sur le dos (figure 4).'},
+  {name:'Étirement hip flexors — allongé',sets:'2 fois',reps:'45 sec/côté',rest:0,img:'ischio',
+   steps:['Allongé sur le dos, genou droit ramené vers la poitrine, maintenu par les deux mains.','Jambe gauche tendue sur le sol.','Pousser doucement le genou droit vers la poitrine.','Sentez l\'étirement à l\'avant de la hanche gauche — 45 sec puis alterner.'],
+   tip:'💡 Version allongée du hip flexor — zéro pression sur les genoux.',
+   erreur:'⚠ Le dos reste plaqué au sol — ne cambrez pas.'},
+  {name:'Posture de l\'enfant (Balasana)',sets:'1 fois',reps:'90 sec',rest:0,img:'enfant',
+   steps:['À genoux, bras tendus devant, front au sol.','Relâcher complètement le poids du corps.','Chaque expiration allonge la colonne.','Restez aussi longtemps que possible.'],
+   tip:'💡 Décompression vertébrale : plus longtemps, mieux c\'est.',
+   erreur:'⚠ Serviette sous les fesses si les genoux font mal.'},
+ ]},
+];
+
+/* index par jour : 0=Lun(A), 1=Mar(B), 2=Mer(C), 3=Jeu(D), 4=Ven(C), 5=Sam(E), 6=Dim */
+var SESSION_IDX=[0,1,2,3,2,4,5];
+
+var currentTab=0,doneExos={},timerInterval=null,timerTotal=0,timerLeft=0;
+
+function buildTabs(){
+  var bar=document.getElementById('tabs');
+  bar.innerHTML='';
+  DAYS.forEach(function(d,i){
+    var el=document.createElement('div');
+    el.className='tab'+(i===0?' active':'');
+    el.innerHTML=d.tab+'<span class="tab-sub">'+d.tabSub+'</span>';
+    el.onclick=(function(idx){return function(){showTab(idx);};})(i);
+    bar.appendChild(el);
+  });
+}
+
+function showTab(i){
+  currentTab=i;
+  document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i)});
+  renderSession(SESSIONS[SESSION_IDX[i]]);
+}
+
+function renderSession(s){
+  var C=COLORS[s.col]||COLORS.A;
+  var dk=doneExos[s.id]||{};
+  var doneCount=Object.keys(dk).length;
+  var total=s.exos.length;
+  var pct=total?Math.round(doneCount/total*100):0;
+  var html='';
+
+  /* header */
+  html+='<div class="session-header">'
+    +'<div class="session-badge" style="background:'+C.grad+'">'
+    +(s.repos?'<span class="s-icon">🌿</span>':'<span class="s-icon">'+s.letter+'</span>')
+    +'<span class="s-lbl">'+s.day+'</span>'
+    +'</div>'
+    +'<div><div class="session-title">'+s.name+'</div>'
+    +'<div class="session-meta">'
+    +'<span class="session-tag" style="background:'+C.light+';color:'+C.badge+'">'+s.day+' · '+s.time+'</span>'
+    +s.desc+'</div></div></div>';
+
+  /* progress */
+  if(!s.repos){
+    html+='<div class="progress-wrap">'
+      +'<div class="progress-row"><span class="progress-lbl">Progression</span>'
+      +'<span class="progress-pct" style="color:'+C.bg+'">'+pct+'%</span></div>'
+      +'<div class="progress-track"><div class="progress-fill" style="background:'+C.grad+';width:'+pct+'%"></div></div>'
+      +'</div>';
+  }
+
+  /* warmup */
+  if(s.warmup.length>0){
+    html+='<div class="warm-section"><div class="warm-title">🔥 Échauffement</div>';
+    s.warmup.forEach(function(w){
+      html+='<div class="warm-item"><div class="warm-item-txt">'+w.n+'<br><span class="warm-item-sub">'+w.d+'</span></div>'
+        +'<span class="warm-badge" style="background:'+C.bg+'">'+w.b+'</span></div>';
+    });
+    html+='</div>';
+  }
+
+  /* dimanche : intro repos */
+  if(s.repos){
+    html+='<div class="repos-wrap">'
+      +'<div class="repos-card" style="border-color:'+C.bg+'33">'
+      +'<div class="repos-icon">🌿</div>'
+      +'<div class="repos-title">Journée de récupération</div>'
+      +'<div class="repos-txt">Marche douce + étirements complets.<br>C\'est ici que le muscle se reconstruit et que le métabolisme se régule.</div>'
+      +'</div>'
+      +'</div>';
+  }
+
+  /* exos */
+  html+='<div class="exo-list">';
+  s.exos.forEach(function(ex,i){
+    var done=dk[i];
+    var imgSrc=IMG[ex.img]||null;
+    var imgHtml='';
+    if(imgSrc){
+      imgHtml='<div class="exo-img-wrap"><img src="'+imgSrc+'" alt="'+ex.name+'" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>'
+        +'<div class="exo-img-credit">📷 Wikimedia Commons — domaine public</div>';
+    }
+    html+='<div class="exo-card'+(done?' done':'')+'" id="card-'+s.id+'-'+i+'" onclick="toggleCard(\''+s.id+'\','+i+')">'
+      +'<div class="exo-card-header">'
+      +'<div class="exo-num'+(done?' is-done':'')+'" style="background:'+(done?'linear-gradient(135deg,#4ECDC4,#95E1D3)':C.light)+';color:'+(done?'#fff':C.badge)+'">'+(done?'✓':(i+1))+'</div>'
+      +'<div class="exo-info"><div class="exo-name">'+ex.name+'</div>'
+      +'<div class="badge-row">'
+      +'<span class="badge" style="background:'+C.light+';color:'+C.badge+'">'+ex.sets+'</span>'
+      +'<span class="badge" style="background:#f0fffe;color:#3db8b0">'+ex.reps+'</span>'
+      +'</div></div>'
+      +'<span class="exo-chevron">⌄</span>'
+      +'</div>'
+      +'<div class="exo-detail">'
+      +imgHtml
+      +'<div class="exo-body">'
+      +'<div class="steps-title" style="color:'+C.bg+'">📋 Technique étape par étape</div>'
+      +ex.steps.map(function(st,n){return '<div class="step"><div class="step-num" style="background:'+C.bg+'">'+(n+1)+'</div><div class="step-txt">'+st+'</div></div>';}).join('')
+      +(ex.tip?'<div class="tip-box">'+ex.tip+'</div>':'')
+      +(ex.erreur?'<div class="err-box">'+ex.erreur+'</div>':'')
+      +'<div class="chips"><span class="chip" style="background:'+C.light+';color:'+C.badge+'">'+ex.sets+'</span><span class="chip chip-r">'+ex.reps+'</span>'+(ex.rest>0?'<span class="chip chip-t">Repos '+ex.rest+'s</span>':'')+'</div>'
+      +(ex.rest>0?'<button class="btn-timer" style="background:'+C.grad+'" onclick="event.stopPropagation();startTimer('+ex.rest+',\'⏱ Repos\')">⏱ Minuteur '+ex.rest+' sec</button>':'')
+      +'<button class="btn-done'+(done?' is-done':'')+'" onclick="event.stopPropagation();markDone(\''+s.id+'\','+i+')">'+(done?'↩ Marquer non fait':'✓ Exercice terminé')+'</button>'
+      +'</div></div></div>';
+  });
+  html+='</div>';
+
+  html+='<div class="conseil" style="background:'+C.light+';border-color:'+C.bg+'33">'
+    +'<div class="conseil-title" style="color:'+C.bg+'">💡 Conseil</div>'+s.conseil+'</div>';
+
+  document.getElementById('content').innerHTML=html;
+  document.getElementById('content').scrollTop=0;
+}
+
+function toggleCard(sid,i){
+  var card=document.getElementById('card-'+sid+'-'+i);
+  var isOpen=card.classList.contains('open');
+  document.querySelectorAll('.exo-card.open').forEach(function(c){c.classList.remove('open')});
+  if(!isOpen)card.classList.add('open');
+}
+
+function markDone(sid,i){
+  if(!doneExos[sid])doneExos[sid]={};
+  if(doneExos[sid][i])delete doneExos[sid][i];
+  else doneExos[sid][i]=true;
+  var sc=document.getElementById('content').scrollTop;
+  renderSession(SESSIONS[SESSION_IDX[currentTab]]);
+  document.getElementById('content').scrollTop=sc;
+  var card=document.getElementById('card-'+sid+'-'+i);
+  if(card)card.classList.add('open');
+}
+
+function startTimer(sec,label){
+  timerTotal=sec;timerLeft=sec;
+  document.getElementById('timer-label').textContent=label||'Repos';
+  document.getElementById('timer-overlay').classList.add('show');
+  updateTimer();
+  clearInterval(timerInterval);
+  timerInterval=setInterval(function(){timerLeft--;updateTimer();if(timerLeft<=0){clearInterval(timerInterval);setTimeout(stopTimer,900);}},1000);
+}
+function updateTimer(){
+  document.getElementById('timer-num').textContent=timerLeft;
+  var fg=document.getElementById('ring-fg');
+  fg.style.strokeDashoffset=534*(1-timerLeft/timerTotal);
+  fg.style.stroke=timerLeft<=5?'#FF6B6B':timerLeft<=10?'#ffd93d':'#FF6B35';
+}
+function stopTimer(){clearInterval(timerInterval);document.getElementById('timer-overlay').classList.remove('show');}
+
+buildTabs();
+renderSession(SESSIONS[0]);
+</script>
+</body>
+</html>
