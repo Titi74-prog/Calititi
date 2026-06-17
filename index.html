@@ -25,7 +25,7 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 .tab .tab-sub{display:block;font-size:9px;font-weight:500;margin-top:2px;color:var(--txt3)}
 .tab.active{color:var(--sun);border-bottom-color:var(--sun)}
 .tab.active .tab-sub{color:var(--sun)}
-#content{flex:1;overflow-y:auto;overflow-x:hidden}
+#content{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
 .session-header{padding:14px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
 .session-badge{width:48px;height:48px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;line-height:1.1}
 .session-badge .s-icon{font-size:22px}
@@ -75,10 +75,14 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 .chip{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
 .chip-r{background:#fff8e0;color:#b8860b}
 .chip-t{background:#f0fffe;color:#3db8b0}
-.btn-timer{display:flex;align-items:center;gap:8px;width:100%;border:none;color:#fff;font-size:13px;font-weight:700;padding:11px 16px;border-radius:12px;cursor:pointer;margin-top:12px;-webkit-appearance:none;justify-content:center}
+.btn-timer{display:flex;align-items:center;gap:8px;width:100%;border:none;color:#fff;font-size:13px;font-weight:700;padding:11px 16px;border-radius:12px;cursor:pointer;margin-top:10px;-webkit-appearance:none;justify-content:center}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+.btn-row .btn-timer{margin-top:0;flex:1}
+.btn-hold{background:linear-gradient(135deg,#4ECDC4,#3db8b0)!important}
+.btn-rest{background:rgba(80,80,80,.1)!important;color:#555!important;border:1.5px solid #ddd!important}
 .btn-done{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border:1.5px solid var(--border);color:var(--txt2);font-size:13px;font-weight:600;padding:10px 16px;border-radius:12px;cursor:pointer;margin-top:8px;-webkit-appearance:none;justify-content:center}
 .btn-done.is-done{border-color:#4ECDC4;color:#3db8b0;background:#f0fffe}
-.conseil{margin:0 12px 16px;border-radius:16px;padding:13px 14px;font-size:12px;line-height:1.7;border:1px solid}
+.conseil{margin:0 12px 80px;border-radius:16px;padding:13px 14px;font-size:12px;line-height:1.7;border:1px solid}
 .conseil-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 /* REPOS */
 .repos-wrap{padding:20px 16px}
@@ -108,7 +112,7 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 <div id="app">
 <div id="header">
   <h1>Callisthénie · Thierry</h1>
-  <p>Programme 12 semaines · 5 séances / semaine</p>
+  <p>Programme 12 semaines · 6 séances / semaine</p>
 </div>
 <div id="tabs"></div>
 <div id="content"></div>
@@ -192,7 +196,7 @@ var SESSIONS=[
    steps:['En planche avant-bras (position planche classique).','Passer en planche latérale droite en pivotant sur les pieds et l\'avant-bras.','Tenir 2 secondes, revenir en planche frontale.','Pivoter côté gauche. C\'est 1 répétition.'],
    tip:'💡 Enchaînement fluide : frontale → latérale D → frontale → latérale G. Excellent pour les obliques.',
    erreur:'⚠ Les hanches ne montent pas et ne descendent pas lors des rotations.'},
-  {name:'Planche frontale',sets:'3 séries',reps:'30 sec',rest:45,img:'planche',
+  {name:'Planche frontale',sets:'3 séries',reps:'30 sec',rest:45,hold:30,img:'planche',
    steps:['Avant-bras au sol, coudes sous les épaules.','Corps aligné tête-talon, nombril rentré.','Fessiers contractés, respiration normale.','Progresser : +5 sec chaque semaine.'],
    tip:'💡 Objectif : 60 sec en 6 semaines.',
    erreur:'⚠ Si le dos s\'affaisse : posez les genoux.'},
@@ -200,7 +204,7 @@ var SESSIONS=[
    steps:['À 4 pattes, dos plat comme une table.','Tendez bras droit + jambe gauche à l\'horizontale.','Tenir 2 secondes, ventre serré.','Alterner lentement.'],
    tip:'💡 Imaginez un verre d\'eau sur votre dos — il ne doit pas tomber.',
    erreur:'⚠ Le bassin ne pivote pas — hanches parallèles au sol.'},
-  {name:'Planche latérale',sets:'3 séries',reps:'20 sec/côté',rest:30,img:'planche',
+  {name:'Planche latérale',sets:'3 séries',reps:'20 sec/côté',rest:30,hold:20,img:'planche',
    steps:['Sur le côté, appui sur l\'avant-bras.','Lever les hanches — corps aligné.','Bras libre tendu vers le plafond.','Tenir sans laisser les hanches descendre.'],
    tip:'💡 Version genoux : tout aussi efficace pour commencer.',
    erreur:'⚠ Hanches qui s\'affaissent = obliques qui ne travaillent plus.'},
@@ -236,7 +240,7 @@ var SESSIONS=[
    steps:['Allongé, genoux à 90°, pieds à plat.','Pousser à travers les talons pour lever les hanches.','Contracter les fessiers — tenir 2 sec en haut.','Descendre vertèbre par vertèbre.'],
    tip:'💡 Pour intensifier : résistez avec les genoux vers l\'extérieur.',
    erreur:'⚠ Le mouvement vient des fessiers, pas du bas du dos.'},
-  {name:'Vacuum abdominal',sets:'3 séries',reps:'20 sec',rest:30,img:'vacuum',
+  {name:'Vacuum abdominal',sets:'3 séries',reps:'20 sec',rest:30,hold:20,img:'vacuum',
    steps:['Debout, assis ou à 4 pattes.','Expirer à fond, vider complètement les poumons.','Rentrer le nombril vers la colonne au maximum.','Tenir 20 sec, respiration courte et superficielle.'],
    tip:'💡 L\'exercice ventre plat n°1. À refaire au bureau dans la journée.',
    erreur:'⚠ C\'est une rétraction vers l\'intérieur, pas une montée.'},
@@ -252,11 +256,11 @@ var SESSIONS=[
   {n:'Rotations bras + buste',d:'Amplitude progressive',b:'2×10'},
  ],
  exos:[
-  {name:'Montées de bras énergiques',sets:'3 tours',reps:'2 min',rest:0,img:'rowing',
+  {name:'Montées de bras énergiques',sets:'3 tours',reps:'2 min',rest:15,hold:120,img:'rowing',
    steps:['Debout, pieds écartés largeur épaules, légère flexion des hanches.','Lever alternativement les bras au-dessus de la tête à rythme soutenu.','Bras actifs, épaules engagées — comme pour attraper quelque chose en hauteur.','Rythme continu sur 2 minutes, respiration régulière.'],
    tip:'💡 Cardio haut du corps sans impact — fréquence cible ~120 bpm.',
    erreur:'⚠ Ne bloquez pas la respiration — gardez un rythme respiratoire régulier.'},
-  {name:'Rowing assis (tapis)',sets:'3 tours',reps:'45 sec',rest:0,img:'rowing',
+  {name:'Rowing assis (tapis)',sets:'3 tours',reps:'45 sec',rest:15,hold:45,img:'rowing',
    steps:['Assis sur le tapis, jambes tendues devant soi.','Se pencher légèrement en avant, bras tendus.','Tirer les deux bras vers les hanches en se redressant — imite le rameur.','Répéter en continu à rythme soutenu.'],
    tip:'💡 Contractez le dos à chaque traction — cardio ET renforcement dos en même temps.',
    erreur:'⚠ Gardez un galbe naturel dans le dos — ne vous affaissez pas.'},
@@ -264,11 +268,11 @@ var SESSIONS=[
    steps:['Mains largeur épaules, corps aligné (ou genoux).','Descendre coudes à 45°, poitrine au ras du sol.','Pousser en expirant, corps gaîné.','Qualité avant vitesse.'],
    tip:'💡 Version genoux : tout aussi efficace.',
    erreur:'⚠ Les hanches ne montent pas — corps comme une planche.'},
-  {name:'Planche dynamique in-out',sets:'3 tours',reps:'30 sec',rest:0,img:'planche',
+  {name:'Planche dynamique in-out',sets:'3 tours',reps:'30 sec',rest:15,hold:30,img:'planche',
    steps:['Position planche bras tendus.','Avancer les deux mains vers les pieds en fléchissant les hanches.','Revenir en position planche en un seul mouvement fluide.','1 aller-retour toutes les 2-3 secondes.'],
    tip:'💡 Ce mouvement demande souplesse ET gainage — ne forcez pas l\'amplitude au début.',
    erreur:'⚠ Ne relâchez pas le gainage lors du retour — le dos reste plat.'},
-  {name:'Planche frontale',sets:'3 tours',reps:'30 sec',rest:0,img:'planche',
+  {name:'Planche frontale',sets:'3 tours',reps:'30 sec',rest:15,hold:30,img:'planche',
    steps:['Avant-bras au sol, corps aligné.','Nombril rentré, fessiers contractés.','Respirez lentement.','Genoux au sol si la forme se dégrade.'],
    tip:'💡 20 sec en bonne forme vaut mieux que 30 sec en mauvaise.',
    erreur:'⚠ Ne retenez pas votre respiration.'},
@@ -292,7 +296,7 @@ var SESSIONS=[
    steps:['Corps aligné, mains largeur épaules.','Descendre jusqu\'au sol à chaque répétition.','Garder 1-2 reps en réserve.','NOTER le nombre : indicateur de progression.'],
    tip:'💡 Progressez de 1-2 reps par semaine. En 12 semaines : +15 reps minimum.',
    erreur:'⚠ Ne sacrifiez jamais la qualité pour le nombre.'},
-  {name:'Bear plank (gainage quadrupède)',sets:'3 séries',reps:'30 sec',rest:60,img:'birddog',
+  {name:'Bear plank (gainage quadrupède)',sets:'3 séries',reps:'30 sec',rest:60,hold:30,img:'birddog',
    steps:['À 4 pattes, mains sous les épaules, genoux sous les hanches.','Décoller les genoux du sol de 5 cm — dos plat, ventre serré.','Tenir la position statique en respirant normalement.','Le bas du dos ne s\'arrondit pas, les genoux restent juste au-dessus du sol.'],
    tip:'💡 Looks easy, is hard. Le transverse et le carré des lombes travaillent intensément.',
    erreur:'⚠ Ne pas laisser les fesses monter — hanches à hauteur des épaules.'},
@@ -325,7 +329,7 @@ var SESSIONS=[
   {n:'Rotations bras + buste',d:'Grands cercles, amplitude progressive',b:'2×10'},
  ],
  exos:[
-  {name:'Rowing assis — intervalles',sets:'6 rounds',reps:'40s vif / 20s repos',rest:0,img:'rowing',
+  {name:'Rowing assis — intervalles',sets:'6 rounds',reps:'40s vif / 20s repos',rest:20,hold:40,img:'rowing',
    steps:['Assis sur le tapis, jambes tendues, bras tendus vers l\'avant.','40 sec : tirer les bras vers les hanches en se redressant énergiquement.','20 sec : pause, respiration.','6 rounds = 6 minutes. Cardio haut du corps sans impact.'],
    tip:'💡 Intensité 7-8/10 sur les phases actives. Cible ~120-130 bpm.',
    erreur:'⚠ Ne pas arrondir le dos à la phase de flexion vers l\'avant.'},
@@ -341,11 +345,11 @@ var SESSIONS=[
    steps:['Ventre au sol, bras tendus devant.','Lever bras et jambes simultanément.','Tenir 2 secondes en haut.','Descente sans toucher le sol.'],
    tip:'💡 Tenir 2 sec en haut = qualité.',
    erreur:'⚠ Membres tendus — pas de pliage.'},
-  {name:'Pigeon — étirement hanches',sets:'2 fois',reps:'60 sec/côté',rest:0,img:'pigeon',
+  {name:'Pigeon — étirement hanches',sets:'2 fois',reps:'60 sec/côté',rest:15,hold:60,img:'pigeon',
    steps:['Jambe avant fléchie à 90°, jambe arrière tendue.','Avant-bras au sol pour s\'abaisser.','Relâcher le poids du corps vers le bas.','Respirez profondément dans la position.'],
    tip:'💡 Étirement clé pour contrebalancer le travail des jambes.',
    erreur:'⚠ Ne forcez pas — respirez dans la position.'},
-  {name:'Posture de l\'enfant (Balasana)',sets:'1 fois',reps:'90 sec',rest:0,img:'enfant',
+  {name:'Posture de l\'enfant (Balasana)',sets:'1 fois',reps:'90 sec',rest:15,hold:90,img:'enfant',
    steps:['À genoux, bras tendus devant, front au sol.','Relâcher complètement le dos.','Chaque expiration allonge la colonne.','Rester le plus longtemps possible.'],
    tip:'💡 Décompression vertébrale active.',
    erreur:'⚠ Genoux douloureux : serviette pliée sous les fesses.'},
@@ -362,23 +366,23 @@ var SESSIONS=[
    steps:['Rythme tranquille, pas de performance.','La lumière naturelle du matin régule le sommeil et l\'humeur.','Respiration libre, épaules relâchées.','Profitez — c\'est la seule consigne.'],
    tip:'💡 La marche matinale améliore le sommeil du soir et réduit le cortisol.',
    erreur:''},
-  {name:'Torsion spinale allongée',sets:'2 fois',reps:'45 sec/côté',rest:0,img:'torsion',
+  {name:'Torsion spinale allongée',sets:'2 fois',reps:'45 sec/côté',rest:15,hold:45,img:'torsion',
    steps:['Allongé sur le dos, bras en croix.','Ramener le genou droit de l\'autre côté.','Épaule droite reste au sol, regardez à gauche.','Laissez la gravité faire le travail — 45 sec.'],
    tip:'💡 Inspirez en position neutre, expirez en laissant le genou descendre.',
    erreur:'⚠ Ne forcez pas le genou — la gravité suffit.'},
-  {name:'Étirement ischio-jambiers',sets:'2 fois',reps:'40 sec/jambe',rest:0,img:'ischio',
+  {name:'Étirement ischio-jambiers',sets:'2 fois',reps:'40 sec/jambe',rest:15,hold:40,img:'ischio',
    steps:['Allongé, jambe gauche fléchie, pied à plat.','Lever la jambe droite tendue vers le plafond.','Attraper le mollet ou la cuisse, pas le pied.','Tirer doucement vers vous, dos plat.'],
    tip:'💡 Respirez dans l\'étirement — chaque expiration relâche le muscle.',
    erreur:'⚠ Ne forcez jamais l\'amplitude — douleur = trop loin.'},
-  {name:'Pigeon (hanches)',sets:'2 fois',reps:'60 sec/côté',rest:0,img:'pigeon',
+  {name:'Pigeon (hanches)',sets:'2 fois',reps:'60 sec/côté',rest:15,hold:60,img:'pigeon',
    steps:['Jambe avant fléchie à 90°, jambe arrière tendue.','S\'abaisser sur les avant-bras ou front au sol.','Relâcher le poids du corps complètement.','Respiration profonde — 60 secondes.'],
    tip:'💡 Le psoas et les hanches se relâchent ici — crucial pour le dos.',
    erreur:'⚠ Si douleur au genou : option sur le dos (figure 4).'},
-  {name:'Étirement hip flexors — allongé',sets:'2 fois',reps:'45 sec/côté',rest:0,img:'ischio',
+  {name:'Étirement hip flexors — allongé',sets:'2 fois',reps:'45 sec/côté',rest:15,hold:45,img:'ischio',
    steps:['Allongé sur le dos, genou droit ramené vers la poitrine, maintenu par les deux mains.','Jambe gauche tendue sur le sol.','Pousser doucement le genou droit vers la poitrine.','Sentez l\'étirement à l\'avant de la hanche gauche — 45 sec puis alterner.'],
    tip:'💡 Version allongée du hip flexor — zéro pression sur les genoux.',
    erreur:'⚠ Le dos reste plaqué au sol — ne cambrez pas.'},
-  {name:'Posture de l\'enfant (Balasana)',sets:'1 fois',reps:'90 sec',rest:0,img:'enfant',
+  {name:'Posture de l\'enfant (Balasana)',sets:'1 fois',reps:'90 sec',rest:15,hold:90,img:'enfant',
    steps:['À genoux, bras tendus devant, front au sol.','Relâcher complètement le poids du corps.','Chaque expiration allonge la colonne.','Restez aussi longtemps que possible.'],
    tip:'💡 Décompression vertébrale : plus longtemps, mieux c\'est.',
    erreur:'⚠ Serviette sous les fesses si les genoux font mal.'},
@@ -485,7 +489,10 @@ function renderSession(s){
       +(ex.tip?'<div class="tip-box">'+ex.tip+'</div>':'')
       +(ex.erreur?'<div class="err-box">'+ex.erreur+'</div>':'')
       +'<div class="chips"><span class="chip" style="background:'+C.light+';color:'+C.badge+'">'+ex.sets+'</span><span class="chip chip-r">'+ex.reps+'</span>'+(ex.rest>0?'<span class="chip chip-t">Repos '+ex.rest+'s</span>':'')+'</div>'
-      +(ex.rest>0?'<button class="btn-timer" style="background:'+C.grad+'" onclick="event.stopPropagation();startTimer('+ex.rest+',\'⏱ Repos\')">⏱ Minuteur '+ex.rest+' sec</button>':'')
+      +'<div class="btn-row">'
+      +(ex.hold?'<button class="btn-timer btn-hold" onclick="event.stopPropagation();startTimer('+ex.hold+',\'🏋️ '+ex.name.substring(0,22)+'...\')">🏋️ Exercice '+ex.hold+'s</button>':'')
+      +(ex.rest>0?'<button class="btn-timer btn-rest" onclick="event.stopPropagation();startTimer('+ex.rest+',\'⏱ Repos\')">⏱ Repos '+ex.rest+'s</button>':'')
+      +'</div>'
       +'<button class="btn-done'+(done?' is-done':'')+'" onclick="event.stopPropagation();markDone(\''+s.id+'\','+i+')">'+(done?'↩ Marquer non fait':'✓ Exercice terminé')+'</button>'
       +'</div></div></div>';
   });
