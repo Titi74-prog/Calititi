@@ -5,89 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#9C4A87">
-<title>Affinement Global — Programme</title>
+<meta name="theme-color" content="#5C6BC0">
+<title>Affinement — Programme</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#FDF7FA;color:#2d1b29;overflow:hidden}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F8F9FA;color:#1a1a2e;overflow:hidden}
 :root{
-  --plum:#9C4A87;--plum2:#C76B98;--rose:#E8B4CB;--roseL:#FBEAF2;
-  --gold:#E8A87C;--goldL:#FFF3EC;--mint:#7FCDBB;--mintL:#EEFAF7;
-  --lav:#A29BFE;--lavL:#F2F0FF;
-  --bg:#FDF7FA;--white:#fff;--txt:#2d1b29;--txt2:#6b5566;--txt3:#a0909b;
-  --border:#f3e5ee;
+  --bg:#F8F9FA;--white:#fff;--txt:#1a1a2e;--txt2:#555;--txt3:#999;--border:#eee;
 }
 #app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;background:var(--bg)}
-#header{background:linear-gradient(135deg,#9C4A87 0%,#C76B98 50%,#E8A87C 100%);padding:16px;flex-shrink:0;position:relative;overflow:hidden}
-#header::after{content:'🌸';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.45}
-#header h1{font-size:16px;font-weight:700;color:#fff}
-#header p{font-size:11px;color:rgba(255,255,255,.85);margin-top:3px}
-#tabs{display:flex;background:#fff;overflow-x:auto;scrollbar-width:none;flex-shrink:0;border-bottom:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+
+/* HEADER */
+#header{background:#fff;padding:20px 16px 14px;flex-shrink:0;border-bottom:1px solid var(--border)}
+#header h1{font-size:22px;font-weight:800;color:var(--txt);letter-spacing:-.5px;line-height:1.1}
+#header h1 span{color:#9C4A87}
+#header .header-sub{display:flex;align-items:center;gap:8px;margin-top:6px}
+#header .h-dot{width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,#9C4A87,#A29BFE)}
+#header .h-tag{font-size:12px;font-weight:600;color:var(--txt3);letter-spacing:.1px}
+
+/* TABS */
+#tabs{display:flex;background:#fff;overflow-x:auto;scrollbar-width:none;flex-shrink:0;border-bottom:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04)}
 #tabs::-webkit-scrollbar{display:none}
 .tab{flex:1;min-width:0;padding:9px 4px;font-size:11px;font-weight:700;color:var(--txt3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;text-align:center;transition:color .2s;white-space:nowrap}
 .tab .tab-sub{display:block;font-size:9px;font-weight:500;margin-top:2px;color:var(--txt3)}
-.tab.active{color:var(--plum);border-bottom-color:var(--plum)}
-.tab.active .tab-sub{color:var(--plum)}
+.tab.active{color:#9C4A87;border-bottom-color:#9C4A87}
+.tab.active .tab-sub{color:#9C4A87}
+
+/* CONTENT */
 #content{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
-.session-header{padding:15px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.session-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+
+/* SESSION HEADER */
+.session-header{padding:14px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.session-badge{width:56px;height:56px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;line-height:1.1}
+.session-badge .s-icon{font-size:20px}
+.session-badge .s-lbl{font-size:8px;color:#fff;opacity:.9;text-transform:uppercase;letter-spacing:.3px;margin-top:2px;text-align:center;white-space:nowrap;width:100%;padding:0 4px}
 .session-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:3px}
 .session-meta{font-size:11px;color:var(--txt2)}
-.session-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--roseL);color:var(--plum);margin-right:4px}
-.progress-wrap{padding:12px 16px 10px;background:#fff;border-bottom:1px solid var(--border)}
-.progress-row{display:flex;justify-content:space-between;margin-bottom:7px}
+.session-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:4px}
+
+/* PROGRESS */
+.progress-wrap{padding:10px 16px;background:#fff;border-bottom:1px solid var(--border)}
+.progress-row{display:flex;justify-content:space-between;margin-bottom:6px}
 .progress-lbl{font-size:12px;font-weight:600;color:var(--txt2)}
-.progress-pct{font-size:13px;font-weight:700;color:var(--plum)}
-.progress-track{background:var(--border);border-radius:8px;height:8px;overflow:hidden}
-.progress-fill{height:8px;border-radius:8px;background:linear-gradient(90deg,#9C4A87,#E8A87C);transition:width .5s}
-.why-box{margin:12px;background:var(--lavL);border-radius:14px;padding:12px 14px;font-size:12px;color:var(--txt);line-height:1.65;border:1px solid #e5e0ff}
-.why-title{font-size:11px;font-weight:700;color:var(--lav);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
-.warm-section{padding:13px 16px;background:var(--mintL);border-bottom:1px solid #ddf2ec}
-.warm-title{font-size:11px;font-weight:700;color:#4daa95;text-transform:uppercase;letter-spacing:.8px;margin-bottom:9px}
-.warm-item{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(127,205,187,.2)}
+.progress-pct{font-size:13px;font-weight:700}
+.progress-track{background:var(--border);border-radius:8px;height:7px;overflow:hidden}
+.progress-fill{height:7px;border-radius:8px;transition:width .5s}
+
+/* ROUNDS */
+.round-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.round-lbl{font-size:12px;font-weight:700;color:var(--txt2)}
+.round-btn{width:36px;height:36px;border-radius:50%;border:2px solid;font-size:14px;font-weight:700;cursor:pointer;-webkit-appearance:none;transition:all .2s}
+.round-rest-btn{margin-left:auto;border:none;color:#fff;font-size:12px;font-weight:700;padding:8px 12px;border-radius:20px;cursor:pointer;-webkit-appearance:none}
+
+/* WHY BOX */
+.why-box{margin:12px;background:#F2F0FF;border-radius:14px;padding:12px 14px;font-size:12px;color:var(--txt);line-height:1.65;border:1px solid #e5e0ff}
+.why-title{font-size:11px;font-weight:700;color:#7c73e6;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+
+/* WARMUP */
+.warm-section{padding:12px 16px;background:#EEFAF7;border-bottom:1px solid #ddf2ec}
+.warm-title{font-size:11px;font-weight:700;color:#4daa95;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.warm-item{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid rgba(127,205,187,.2)}
 .warm-item:last-child{border:none}
 .warm-item-txt{flex:1;font-size:13px;color:var(--txt);font-weight:500}
-.warm-item-sub{font-size:11px;color:var(--txt3);font-weight:400}
-.warm-badge{background:var(--mint);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.warm-item-sub{font-size:11px;color:var(--txt3)}
+.warm-badge{color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+
+/* EXO CARDS */
 .exo-list{padding:12px 12px 24px}
-.exo-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(156,74,135,.05)}
-.exo-card.open{border-color:var(--plum);box-shadow:0 4px 16px rgba(156,74,135,.15)}
-.exo-card.done{opacity:.6}
+.exo-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.exo-card.open{box-shadow:0 4px 18px rgba(0,0,0,.1)}
+.exo-card.done{opacity:.55}
 .exo-card-header{display:flex;align-items:center;padding:13px 14px;gap:12px}
-.exo-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;background:var(--roseL);color:var(--plum)}
-.exo-num.is-done{background:linear-gradient(135deg,#7FCDBB,#A29BFE);color:#fff}
+.exo-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.exo-num.is-done{background:linear-gradient(135deg,#7FCDBB,#A29BFE)!important;color:#fff!important}
 .exo-info{flex:1;min-width:0}
 .exo-name{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:3px}
 .badge-row{display:flex;gap:5px;flex-wrap:wrap}
 .badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px}
-.badge-s{background:var(--roseL);color:var(--plum)}
-.badge-t{background:var(--mintL);color:#4daa95}
 .exo-chevron{font-size:20px;color:var(--txt3);transition:transform .25s;line-height:1;flex-shrink:0}
-.exo-card.open .exo-chevron{transform:rotate(180deg);color:var(--plum)}
-.exo-detail{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.exo-card.open .exo-chevron{transform:rotate(180deg)}
+.exo-detail{display:none;border-top:1px solid var(--border)}
 .exo-card.open .exo-detail{display:block}
-.exo-detail-txt{font-size:13px;color:var(--txt2);line-height:1.65;margin-top:12px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.chip{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
-.chip-s{background:var(--roseL);color:var(--plum)}
-.chip-r{background:var(--goldL);color:#c77f4a}
-.chip-t{background:var(--mintL);color:#4daa95}
+.exo-body{padding:13px 14px}
+.steps-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.step{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start}
+.step-num{width:22px;height:22px;min-width:22px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step-txt{font-size:13px;color:var(--txt2);line-height:1.55}
+.tip-box{background:#fff8e0;border-radius:10px;padding:10px 12px;margin:8px 0 4px;font-size:12px;color:#8a7000;line-height:1.55;border-left:3px solid #ffd93d}
+.err-box{background:#fff0f0;border-radius:10px;padding:10px 12px;margin:6px 0;font-size:12px;color:#c0392b;line-height:1.55;border-left:3px solid #FF6B6B}
 .btn-row{display:flex;gap:8px;margin-top:12px}
 .btn-row .btn-timer{margin-top:0;flex:1}
 .btn-timer{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:none;font-size:13px;font-weight:700;padding:11px 10px;border-radius:12px;cursor:pointer;-webkit-appearance:none}
 .btn-hold{background:linear-gradient(135deg,#7FCDBB,#4ECDC4);color:#fff}
 .btn-rest{background:rgba(80,80,80,.08);color:#555;border:1.5px solid #e0d8e8}
-.btn-done{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border:1.5px solid var(--border);color:var(--txt2);font-size:13px;font-weight:600;padding:10px 16px;border-radius:12px;cursor:pointer;margin-top:8px;-webkit-appearance:none;justify-content:center;transition:all .2s}
-.btn-done.is-done{border-color:var(--mint);color:#4daa95;background:var(--mintL)}
-.conseil{margin:0 12px 80px;background:linear-gradient(135deg,#FFF3EC,#FBEAF2);border-radius:16px;padding:13px 14px;font-size:12px;color:var(--txt);line-height:1.7;border:1px solid #f5dfe9}
-.conseil-title{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-#timer-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,41,.93);z-index:100;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(4px)}
+.btn-done{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border:1.5px solid var(--border);color:var(--txt2);font-size:13px;font-weight:600;padding:10px 16px;border-radius:12px;cursor:pointer;margin-top:8px;-webkit-appearance:none;justify-content:center}
+.btn-done.is-done{border-color:#7FCDBB;color:#4daa95;background:#EEFAF7}
+
+/* CONSEIL */
+.conseil{margin:0 12px 80px;border-radius:16px;padding:13px 14px;font-size:12px;line-height:1.7;border:1px solid}
+.conseil-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+
+/* REPOS DIMANCHE */
+.repos-wrap{padding:16px}
+.repos-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.repos-icon{font-size:36px;margin-bottom:8px}
+.repos-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.repos-txt{font-size:13px;color:var(--txt2);line-height:1.6}
+
+/* TIMER */
+#timer-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,46,.93);z-index:100;align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(4px)}
 #timer-overlay.show{display:flex}
-#timer-label{font-size:14px;font-weight:700;color:var(--rose);margin-bottom:12px;text-align:center;padding:0 24px}
+#timer-label{font-size:14px;font-weight:700;color:#E8B4CB;margin-bottom:12px;text-align:center;padding:0 24px}
 #timer-ring{position:relative;width:190px;height:190px;margin:8px 0}
 #timer-ring svg{width:190px;height:190px;transform:rotate(-90deg)}
 #timer-ring .ring-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:10}
-#timer-ring .ring-fg{fill:none;stroke:#C76B98;stroke-width:10;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:0;transition:stroke-dashoffset .9s linear}
+#timer-ring .ring-fg{fill:none;stroke:#9C4A87;stroke-width:10;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:0;transition:stroke-dashoffset .9s linear}
 #timer-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:58px;font-weight:800;color:#fff;line-height:1}
 #timer-sec{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:24px;margin-top:4px}
 #btn-stop{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:15px;font-weight:600;padding:13px 36px;border-radius:16px;cursor:pointer;-webkit-appearance:none}
@@ -96,8 +128,11 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 <body>
 <div id="app">
 <div id="header">
-  <h1>Affinement Global · 12 semaines</h1>
-  <p>Programme full-body special Marianne · 6 seances/semaine</p>
+  <h1>Affinement · <span>Marianne</span></h1>
+  <div class="header-sub">
+    <div class="h-dot"></div>
+    <span class="h-tag">6 séances / semaine</span>
+  </div>
 </div>
 <div id="tabs"></div>
 <div id="content"></div>
@@ -112,6 +147,16 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sa
   <button id="btn-stop" onclick="stopTimer()">Arreter</button>
 </div>
 <script>
+var COLORS={
+  LU:{bg:'#5C6BC0',light:'#eef0fb',badge:'#5C6BC0',grad:'linear-gradient(135deg,#5C6BC0,#7986CB)'},
+  MA:{bg:'#EF5350',light:'#fef0f0',badge:'#EF5350',grad:'linear-gradient(135deg,#EF5350,#E57373)'},
+  ME:{bg:'#26A69A',light:'#e8f6f5',badge:'#26A69A',grad:'linear-gradient(135deg,#26A69A,#4DB6AC)'},
+  JE:{bg:'#7E57C2',light:'#f3f0fb',badge:'#7E57C2',grad:'linear-gradient(135deg,#7E57C2,#9575CD)'},
+  VE:{bg:'#FF7043',light:'#fff2ee',badge:'#FF7043',grad:'linear-gradient(135deg,#FF7043,#FF8A65)'},
+  SA:{bg:'#F9A825',light:'#fffbec',badge:'#F57F17',grad:'linear-gradient(135deg,#FDD835,#F9A825)'},
+  DI:{bg:'#66BB6A',light:'#edf7ee',badge:'#43A047',grad:'linear-gradient(135deg,#66BB6A,#81C784)'},
+};
+
 var DAYS=[
   {tab:'Lun',sub:'Force bas'},
   {tab:'Mar',sub:'HIIT'},
@@ -123,89 +168,89 @@ var DAYS=[
 ];
 
 var SESSIONS=[
-{id:'LU',name:'Lundi',sub:'Force — Bas du corps',tag:'18h15–18h45',icon:'🦵',iconBg:'#FBEAF2',
+{id:'LU',col:'LU',name:'Lun',sub:'Force — Bas du corps',tag:'18h15–18h45',icon:'🦵',
 why:'Jambes et fessiers sont les plus gros muscles du corps. Les renforcer = le plus gros levier pour relancer le metabolisme.',
 conseil:'Les cuisses qui brulent en fin de seance, c\'est le metabolisme qui se relance. Le muscle consomme des calories meme au repos.',
 warmup:[{n:'Rotations articulaires completes',d:'Nuque vers chevilles',b:'1 tour'},{n:'Cat-Cow',d:'Reveil de la colonne',b:'2x8'},{n:'Squats lents',d:'Amplitude progressive',b:'1x10'}],
 exos:[
-{name:'Squats au poids du corps',sets:'4 series',reps:'12-15 rep.',rest:45,hold:0,target:'Cuisses, fessiers',detail:'Descendre cuisses paralleles au sol. Dos droit, poids sur les talons, genoux dans l\'axe des pieds.'},
-{name:'Fentes alternees',sets:'3 series',reps:'8 rep./jambe',rest:45,hold:0,target:'Cuisses, fessiers, equilibre',detail:'Grand pas en avant, genou arriere proche du sol. Buste droit. Alterner les jambes.'},
-{name:'Pont fessier',sets:'4 series',reps:'15 rep.',rest:45,hold:0,target:'Fessiers, lombaires',detail:'Maintien 2 sec en haut avec contraction maximale des fessiers. Pieds a plat, largeur bassin.'},
-{name:'Squat bulgare (chaise)',sets:'3 series',reps:'6-8 rep./jambe',rest:60,hold:0,target:'Fessiers ++',detail:'Pied arriere sur l\'assise de la chaise. Le meilleur exercice fessiers sans materiel. Descente lente.'},
-{name:'Mollets debout',sets:'3 series',reps:'15 rep.',rest:30,hold:0,target:'Mollets',detail:'Sur une marche si possible pour l\'amplitude complete. Monter sur la pointe, redescendre lentement.'},
-{name:'Chaise contre le mur',sets:'2 series',reps:'30 sec',rest:45,hold:30,target:'Isometrie cuisses',detail:'Dos plaque au mur, cuisses paralleles au sol. Tenir. Cuisses en feu = metabolisme stimule !'}
+{name:'Squats au poids du corps',reps:'12-15 rep.',rest:45,hold:0,detail:'Descendre cuisses paralleles au sol. Dos droit, poids sur les talons, genoux dans l\'axe.',steps:['Pieds largeur epaules, orteils legerement ouverts.','Descendre cuisses paralleles au sol, dos droit.','Poids sur les talons, genoux dans l\'axe.','Pousser en expirant pour remonter.'],tip:'💡 Imaginez que vous vous asseyez sur une chaise invisible.',erreur:'⚠ Les genoux ne rentrent pas vers l\'interieur.'},
+{name:'Fentes alternees',reps:'8 rep./jambe',rest:45,hold:0,detail:'Grand pas en avant, genou arriere proche du sol.',steps:['Grand pas en avant.','Genou arriere proche du sol, buste droit.','Genou avant a 90 degres.','Pousser sur le talon avant pour revenir.'],tip:'💡 Buste droit, regard devant.',erreur:'⚠ Le genou avant ne depasse pas les orteils.'},
+{name:'Pont fessier',reps:'15 rep.',rest:45,hold:0,detail:'Maintien 2 sec en haut avec contraction maximale.',steps:['Allonge sur le dos, genoux a 90, pieds a plat.','Pousser a travers les talons pour lever les hanches.','Contracter les fessiers — tenir 2 sec.','Descendre vertebre par vertebre.'],tip:'💡 Pour intensifier : resister avec les genoux vers l\'exterieur.',erreur:'⚠ Le mouvement vient des fessiers, pas du dos.'},
+{name:'Squat bulgare (chaise)',reps:'6-8 rep./jambe',rest:60,hold:0,detail:'Pied arriere sur l\'assise. Le meilleur exercice fessiers sans materiel.',steps:['Dos tourne a la chaise, poser le pied arriere sur l\'assise.','Pied avant assez avance.','Descendre lentement, genou avant a 90.','Remonter en poussant sur le talon.'],tip:'💡 Le plus difficile et le plus efficace pour les fessiers.',erreur:'⚠ Si instabilite : tenir legerement un mur.'},
+{name:'Mollets debout',reps:'15 rep.',rest:30,hold:0,detail:'Amplitude complete. Monter sur la pointe, redescendre lentement.',steps:['Debout, pieds largeur hanches.','Monter sur la pointe des pieds.','Tenir 1 sec en haut.','Redescendre lentement.'],tip:'💡 Sur une marche pour plus d\'amplitude.',erreur:'⚠ Ne pas rebondir en bas.'},
+{name:'Chaise contre le mur',reps:'30 sec',rest:45,hold:30,detail:'Dos plaque au mur, cuisses paralleles au sol.',steps:['Dos plaque contre le mur.','Descendre jusqu\'a cuisses paralleles au sol.','Tenir sans bouger.','Respiration reguliere.'],tip:'💡 Cuisses en feu = metabolisme stimule.',erreur:'⚠ Le dos reste plaque, pas de glissement.'},
 ]},
-{id:'MA',name:'Mardi',sub:'HIIT — Circuit',tag:'18h15–18h45',icon:'🔥',iconBg:'#FFF3EC',
+{id:'MA',col:'MA',name:'Mar',sub:'HIIT — Circuit',tag:'18h15–18h45',icon:'🔥',
 why:'Le HIIT est l\'arme la plus efficace contre le stockage abdominal hormonal de la perimenopause. Maximum 2x/semaine.',
 conseil:'Si tu as du mal a t\'endormir les soirs de HIIT, baisse l\'intensite de 20% et garde le maximum pour le samedi matin.',
 warmup:[{n:'Marche rapide sur place',d:'Montee progressive',b:'3 min'}],
 exos:[
-{name:'BLOC 1 — 30s vif / 30s repos',sets:'6 rounds',reps:'6 min',rest:30,hold:30,target:'Cardio intense',detail:'Intensite 8/10 sur les phases vives. Jumping jacks ou montees de genoux. Si essoufflement excessif, allonger les repos a 40s.'},
-{name:'Recuperation marche',sets:'—',reps:'2 min',rest:0,hold:120,target:'Respiration',detail:'Marcher sur place, bras detendus, retrouver un souffle regulier avant le bloc 2.'},
-{name:'BLOC 2 — Squats',sets:'2 tours',reps:'40 sec',rest:15,hold:40,target:'Cuisses',detail:'40 secondes d\'effort, 15 secondes de transition vers l\'exercice suivant.'},
-{name:'BLOC 2 — Mountain Climbers',sets:'2 tours',reps:'40 sec',rest:15,hold:40,target:'Cardio, abdos',detail:'En planche, ramener les genoux alternativement vers la poitrine. Rythme soutenu mais controle.'},
-{name:'BLOC 2 — Jumping Jacks',sets:'2 tours',reps:'40 sec',rest:15,hold:40,target:'Cardio complet',detail:'Sauts avec ecartement bras/jambes. Version sans saut possible : step lateral + bras.'},
-{name:'BLOC 2 — Planche',sets:'2 tours',reps:'40 sec',rest:60,hold:40,target:'Gainage',detail:'Fin de tour. 60s de repos puis recommencer le circuit (2 tours total).'}
+{name:'BLOC 1 — 30s vif / 30s repos',reps:'6 rounds',rest:30,hold:30,detail:'Intensite 8/10 sur les phases vives. Jumping jacks ou montees de genoux.',steps:['Choisir un exercice cardio (jumping jacks, montees de genoux).','30 sec a intensite 8/10.','30 sec de recuperation active.','Repeter 6 fois sans pause entre les rounds.'],tip:'💡 Intensite 8/10 = difficile de parler en phrases completes.',erreur:'⚠ Si essoufflement excessif, allonger les repos a 40s.'},
+{name:'Recuperation marche',reps:'2 min',rest:0,hold:120,detail:'Marcher sur place, retrouver un souffle regulier.',steps:['Marcher sur place bras detendus.','Respiration profonde et reguliere.','Laisser le rythme cardiaque redescendre.','Preparer le bloc 2.'],tip:'💡 Ne pas s\'asseoir — la recuperation active est plus efficace.',erreur:''},
+{name:'BLOC 2 — Squats',reps:'40 sec',rest:15,hold:40,detail:'40 sec d\'effort, 15 sec de transition.',steps:['Squats a rythme soutenu.','Amplitude complete a chaque rep.','15 sec de transition vers l\'exercice suivant.','2 tours total du circuit.'],tip:'💡 Qualite avant vitesse.',erreur:''},
+{name:'BLOC 2 — Mountain Climbers',reps:'40 sec',rest:15,hold:40,detail:'En planche, genoux alternativement vers la poitrine.',steps:['Position planche bras tendus.','Ramener le genou droit vers la poitrine.','Alterner rapidement.','Hanches stables — ne pas les lever.'],tip:'💡 Rythme soutenu mais controle.',erreur:'⚠ Les hanches ne montent pas.'},
+{name:'BLOC 2 — Jumping Jacks',reps:'40 sec',rest:15,hold:40,detail:'Sauts avec ecartement bras/jambes.',steps:['Position initiale pieds serres, bras le long du corps.','Sauter en ecartant pieds et bras simultanement.','Revenir a la position initiale.','Version sans saut : step lateral + bras.'],tip:'💡 Version step si fatigue articulaire.',erreur:''},
+{name:'BLOC 2 — Planche',reps:'40 sec',rest:60,hold:40,detail:'Fin de tour. 60s de repos puis recommencer.',steps:['Position planche sur les avant-bras.','Corps aligne, nombril rentre.','Fessiers contractes.','60 sec de repos puis recommencer le circuit.'],tip:'💡 Fin de tour — tenir meme si difficile.',erreur:'⚠ Ne pas laisser les hanches monter ou descendre.'},
 ]},
-{id:'ME',name:'Mercredi',sub:'Force — Haut du corps',tag:'18h15–18h45',icon:'💪',iconBg:'#FBEAF2',
-why:'Bras toniques (triceps en priorite !), epaules dessinees et posture redressee : c\'est ce qui change le plus visiblement la silhouette.',
-conseil:'Les dips sur chaise ciblent les triceps — la zone arriere des bras. Constance = resultats visibles en 6-8 semaines.',
+{id:'ME',col:'ME',name:'Mer',sub:'Force — Haut du corps',tag:'18h15–18h45',icon:'💪',
+why:'Bras toniques, epaules dessinees, posture redressee : c\'est ce qui change le plus visiblement la silhouette.',
+conseil:'Les dips sur chaise ciblent les triceps. Constance = resultats visibles en 6-8 semaines.',
 warmup:[{n:'Rotations articulaires',d:'Focus epaules et poignets',b:'1 tour'},{n:'Cat-Cow',d:'Mobilite colonne',b:'2x8'}],
 exos:[
-{name:'Pompes (genoux ou inclinees)',sets:'4 series',reps:'6-10 rep.',rest:60,hold:0,target:'Pectoraux, bras',detail:'Version genoux ou mains sur l\'assise de la chaise. Corps gaine. Progresser vers les pompes completes.'},
-{name:'Rangee inversee (table)',sets:'3 series',reps:'6-8 rep.',rest:60,hold:0,target:'Dos, posture',detail:'Sous une table solide, tirer la poitrine vers le bord. Omoplates serrees en fin de mouvement.'},
-{name:'Dips sur chaise',sets:'3 series',reps:'6-10 rep.',rest:60,hold:0,target:'Triceps ++',detail:'Mains sur le bord de l\'assise, fesses dans le vide, flechir les coudes. Jambes flechies = plus facile.'},
-{name:'Pike push-ups',sets:'3 series',reps:'5-8 rep.',rest:60,hold:0,target:'Epaules',detail:'En V inverse (fesses hautes), flechir les bras pour amener la tete vers le sol. Epaules toniques.'},
-{name:'Superman',sets:'3 series',reps:'10 rep.',rest:45,hold:0,target:'Dos',detail:'Equilibre le travail des pompes. Lever bras + jambes, tenir 2 sec.'},
-{name:'Planche frontale',sets:'3 series',reps:'25 sec',rest:45,hold:25,target:'Gainage',detail:'Fin de seance. Corps aligne, nombril rentre.'}
+{name:'Pompes (genoux ou inclinees)',reps:'6-10 rep.',rest:60,hold:0,detail:'Version genoux ou mains sur l\'assise de la chaise.',steps:['Mains largeur epaules, corps aligne.','Descendre coudes a 45, poitrine au ras du sol.','Pousser en expirant.','Version genoux : tout aussi efficace.'],tip:'💡 Progresser vers les pompes completes semaine apres semaine.',erreur:'⚠ Corps comme une planche — hanches ne montent pas.'},
+{name:'Rangee inversee (table)',reps:'6-8 rep.',rest:60,hold:0,detail:'Sous une table solide, tirer la poitrine vers le bord.',steps:['Allongee sous une table, mains en prise.','Corps aligne, tirer la poitrine vers le bord.','Serrer les omoplates en fin de mouvement.','Descendre lentement.'],tip:'💡 Plus le corps est horizontal, plus c\'est difficile.',erreur:'⚠ Le dos ne s\'arrondit pas lors de la traction.'},
+{name:'Dips sur chaise',reps:'6-10 rep.',rest:60,hold:0,detail:'Mains sur le bord de l\'assise, fesses dans le vide.',steps:['Mains sur le bord de l\'assise, fesses dans le vide.','Flechir les coudes pour descendre.','Jambes flechies = plus facile, tendues = plus difficile.','Pousser pour remonter en expirant.'],tip:'💡 Cible les triceps — zone tres visible apres 6-8 semaines.',erreur:'⚠ Coudes ne s\'ecartent pas vers les cotes.'},
+{name:'Pike push-ups',reps:'5-8 rep.',rest:60,hold:0,detail:'En V inverse, flechir les bras pour amener la tete vers le sol.',steps:['En V inverse — fesses hautes, bras et jambes tendus.','Flechir les bras pour amener la tete vers le sol.','Coudes legerement vers l\'exterieur.','Pousser pour revenir au V inverse.'],tip:'💡 Meilleur exercice epaules sans materiel.',erreur:'⚠ Les hanches ne descendent pas lors du mouvement.'},
+{name:'Superman',reps:'10 rep.',rest:45,hold:0,detail:'Lever bras + jambes, tenir 2 sec.',steps:['Allongee ventre, bras tendus devant.','Lever simultanement bras ET jambes en expirant.','Tenir 2 sec en contractant dos et fessiers.','Redescente lente sans toucher le sol.'],tip:'💡 Equilibre le travail des pompes.',erreur:'⚠ Membres tendus — ne pas plier coudes ni genoux.'},
+{name:'Planche frontale',reps:'25 sec',rest:45,hold:25,detail:'Corps aligne, nombril rentre.',steps:['Avant-bras au sol, coudes sous les epaules.','Corps aligne tete-talon, nombril rentre.','Fessiers contractes, respiration normale.','Progresser : +5 sec chaque semaine.'],tip:'💡 Objectif : 60 sec en 8 semaines.',erreur:'⚠ Si le dos s\'affaisse : poser les genoux.'},
 ]},
-{id:'JE',name:'Jeudi',sub:'Repos actif — Mobilite',tag:'18h15–18h45',icon:'🧘',iconBg:'#F2F0FF',
-why:'Le cortisol favorise directement le stockage abdominal en perimenopause. Cette seance le fait baisser — ce n\'est PAS du temps perdu.',
-conseil:'La coherence cardiaque (5s inspiration / 5s expiration) a un effet mesurable sur le cortisol. A refaire aussi le matin si possible.',
+{id:'JE',col:'JE',name:'Jeu',sub:'Repos actif — Mobilite',tag:'18h15–18h45',icon:'🧘',
+why:'Le cortisol favorise directement le stockage abdominal en perimenopause. Cette seance le fait baisser.',
+conseil:'La coherence cardiaque (5s inspiration / 5s expiration) a un effet mesurable sur le cortisol. A refaire aussi le matin.',
 warmup:[],
 exos:[
-{name:'Marche douce',sets:'—',reps:'10 min',rest:0,hold:600,target:'Recuperation active',detail:'Rythme tranquille, respiration libre. Dehors si possible.'},
-{name:'Etirement ischio-jambiers',sets:'2 fois',reps:'45 sec/jambe',rest:15,hold:45,target:'Arriere cuisses',detail:'Allongee, jambe tendue vers le haut, tirer doucement.'},
-{name:'Etirement hanches (pigeon)',sets:'2 fois',reps:'45 sec/cote',rest:15,hold:45,target:'Hanches, fessiers',detail:'Position du pigeon ou figure 4 allongee si plus confortable.'},
-{name:'Torsion spinale allongee',sets:'2 fois',reps:'45 sec/cote',rest:15,hold:45,target:'Dos, detente',detail:'Genou ramene de l\'autre cote, epaule au sol, respiration profonde.'},
-{name:'Etirement epaules et nuque',sets:'2 fois',reps:'30 sec/cote',rest:15,hold:30,target:'Haut du corps',detail:'Bras croise devant la poitrine, puis inclinaisons douces de la nuque.'},
-{name:'Coherence cardiaque',sets:'—',reps:'5 min',rest:0,hold:300,target:'Cortisol bas',detail:'Assise confortablement : 5 sec inspiration / 5 sec expiration. 6 respirations par minute pendant 5 minutes.'}
+{name:'Marche douce',reps:'10 min',rest:0,hold:600,detail:'Rythme tranquille, respiration libre.',steps:['Rythme tranquille, pas de performance.','Respiration libre, epaules relachees.','Dehors si possible.','Profitez.'],tip:'💡 La marche active la recuperation sans fatiguer.',erreur:''},
+{name:'Etirement ischio-jambiers',reps:'45 sec/jambe',rest:15,hold:45,detail:'Allongee, jambe tendue vers le haut, tirer doucement.',steps:['Allongee, jambe gauche flechie, pied a plat.','Lever la jambe droite tendue.','Tirer doucement vers soi.','30 sec puis alterner.'],tip:'💡 Respirez dans l\'etirement — chaque expiration relache le muscle.',erreur:'⚠ Ne forcez jamais — douleur = trop loin.'},
+{name:'Etirement hanches (pigeon)',reps:'45 sec/cote',rest:15,hold:45,detail:'Position du pigeon ou figure 4 allongee.',steps:['Jambe avant flechie a 90, jambe arriere tendue.','S\'abaisser sur les avant-bras.','Relacher le poids du corps.','Respiration profonde — 45 sec.'],tip:'💡 Figure 4 allongee si le pigeon est inconfortable.',erreur:'⚠ Ne pas forcer — laisser la gravite faire.'},
+{name:'Torsion spinale allongee',reps:'45 sec/cote',rest:15,hold:45,detail:'Genou ramene de l\'autre cote, epaule au sol.',steps:['Allongee sur le dos, bras en croix.','Ramener le genou droit de l\'autre cote.','Epaule droite reste au sol.','Regarder dans la direction opposee.'],tip:'💡 Inspirez en position neutre, expirez en laissant descendre.',erreur:'⚠ Ne forcez pas le genou — la gravite suffit.'},
+{name:'Etirement epaules et nuque',reps:'30 sec/cote',rest:15,hold:30,detail:'Bras croise devant, puis inclinaisons douces de la nuque.',steps:['Bras droit croise devant la poitrine.','Tenir avec le bras gauche.','30 sec puis inclinaison douce de la nuque.','Alterner les cotes.'],tip:'💡 Tres efficace apres les seances de pompes.',erreur:'⚠ Ne pas forcer la nuque — mouvement tres doux.'},
+{name:'Coherence cardiaque',reps:'5 min',rest:0,hold:300,detail:'5 sec inspiration / 5 sec expiration. 6 respirations par minute.',steps:['Assise confortablement, yeux fermes.','Inspirer doucement sur 5 secondes.','Expirer doucement sur 5 secondes.','Repeter pendant 5 minutes.'],tip:'💡 Effet mesurable sur le cortisol des la premiere session.',erreur:''},
 ]},
-{id:'VE',name:'Vendredi',sub:'Full Body Metabolique',tag:'18h15–18h45',icon:'⚡',iconBg:'#FFF3EC',
-why:'Circuit enchainant tout le corps : forte depense calorique ET stimulation musculaire globale en une seule seance.',
-conseil:'3 tours de 6 minutes. L\'objectif est de garder un rythme regulier du premier au dernier tour — pas de sprint au premier tour !',
+{id:'VE',col:'VE',name:'Ven',sub:'Full Body Metabolique',tag:'18h15–18h45',icon:'⚡',
+why:'Circuit enchainant tout le corps : forte depense calorique ET stimulation musculaire globale.',
+conseil:'3 tours de 6 minutes. Rythme regulier du premier au dernier tour — pas de sprint au debut.',
 warmup:[{n:'Rotations articulaires',d:'Tour complet',b:'1 tour'},{n:'Squats lents',d:'Preparation',b:'1x10'}],
 exos:[
-{name:'1. Squats',sets:'3 tours',reps:'45 sec',rest:15,hold:45,target:'Cuisses, fessiers',detail:'45s d\'effort, 15s de transition vers l\'exercice suivant. Rythme regulier.'},
-{name:'2. Pompes (genoux ok)',sets:'3 tours',reps:'45 sec',rest:15,hold:45,target:'Haut du corps',detail:'Qualite avant vitesse. Reduire l\'amplitude plutot que degrader la technique.'},
-{name:'3. Fentes alternees',sets:'3 tours',reps:'45 sec',rest:15,hold:45,target:'Jambes, equilibre',detail:'Alterner gauche/droite a rythme controle.'},
-{name:'4. Releves de genoux',sets:'3 tours',reps:'45 sec',rest:15,hold:45,target:'Abdos profonds',detail:'Genoux vers la poitrine (chaise romaine ou au sol). Le nombre importe moins que le controle.'},
-{name:'5. Jumping jacks',sets:'3 tours',reps:'45 sec',rest:15,hold:45,target:'Cardio',detail:'Rythme modere et regulier au milieu du circuit.'},
-{name:'6. Planche',sets:'3 tours',reps:'45 sec',rest:90,hold:45,target:'Gainage final',detail:'Dernier exercice du tour. Puis 90 sec de repos complet avant le tour suivant.'}
+{name:'1. Squats',reps:'45 sec',rest:15,hold:45,detail:'45s effort, 15s transition.',steps:['Squats a rythme regulier.','Amplitude complete.','15s de transition vers l\'exercice suivant.','3 tours total.'],tip:'💡 Rythme constant sur les 3 tours.',erreur:''},
+{name:'2. Pompes (genoux ok)',reps:'45 sec',rest:15,hold:45,detail:'Qualite avant vitesse.',steps:['Corps aligne ou sur les genoux.','Amplitude complete a chaque rep.','Qualite avant vitesse.','15s transition.'],tip:'💡 Meme nombre de reps a chaque tour.',erreur:''},
+{name:'3. Fentes alternees',reps:'45 sec',rest:15,hold:45,detail:'Alterner gauche/droite a rythme controle.',steps:['Grand pas en avant.','Alterner gauche/droite.','Buste droit tout au long.','15s transition.'],tip:'💡 Equilibre et controle prioritaires.',erreur:''},
+{name:'4. Releves de genoux',reps:'45 sec',rest:15,hold:45,detail:'Genoux vers la poitrine. Controle total.',steps:['Au sol ou suspendue.','Genoux vers la poitrine en expirant.','Descente controlee.','15s transition.'],tip:'💡 Le nombre importe moins que le controle.',erreur:''},
+{name:'5. Jumping jacks',reps:'45 sec',rest:15,hold:45,detail:'Sauts avec ecartement bras/jambes.',steps:['Position initiale pieds serres.','Sauter en ecartant pieds et bras.','Revenir a la position initiale.','15s transition.'],tip:'💡 Version step si fatigue articulaire.',erreur:''},
+{name:'6. Planche',reps:'45 sec',rest:90,hold:45,detail:'Dernier exercice du tour. 90 sec de repos puis recommencer.',steps:['Avant-bras au sol, corps aligne.','Nombril rentre, fessiers contractes.','Tenir 45 sec.','90 sec de repos puis recommencer.'],tip:'💡 Fin de tour : 90 sec de repos complet.',erreur:''},
 ]},
-{id:'SA',name:'Samedi',sub:'Force Full Body + Gainage',tag:'8h30–9h00',icon:'🏋️',iconBg:'#FBEAF2',
+{id:'SA',col:'SA',name:'Sam',sub:'Full Body + Gainage',tag:'8h30–9h00',icon:'🏋️',
 why:'Le matin a tete reposee : la seance qualite de la semaine. C\'est ici qu\'on mesure la progression.',
-conseil:'Le tempo lent (3 sec de descente) intensifie le travail musculaire sans ajouter de poids. C\'est le secret de la progression.',
+conseil:'Le tempo lent (3 sec de descente) intensifie le travail musculaire sans ajouter de poids.',
 warmup:[{n:'Rotations articulaires',d:'Tour complet',b:'1 tour'},{n:'Cat-Cow',d:'Reveil colonne',b:'2x8'},{n:'Squats lents',d:'Preparation',b:'1x10'}],
 exos:[
-{name:'Squats tempo lent',sets:'4 series',reps:'10 rep.',rest:60,hold:0,target:'Cuisses, fessiers',detail:'3 secondes de descente, remontee normale. Le tempo lent intensifie sans materiel.'},
-{name:'Pompes — maximum',sets:'4 series',reps:'max rep.',rest:60,hold:0,target:'Progression mesuree',detail:'Garder 1-2 reps en reserve. NOTER le nombre : c\'est votre barometre de progression.'},
-{name:'Releves de genoux — chaise romaine',sets:'3 series',reps:'10-12 rep.',rest:60,hold:0,target:'Abdos',detail:'Controle total. Progresser vers les jambes tendues au fil des semaines.'},
-{name:'Good Morning',sets:'3 series',reps:'12 rep.',rest:45,hold:0,target:'Chaine posterieure',detail:'Debout, mains derriere la tete, flexion des hanches dos droit jusqu\'a 90.'},
-{name:'Dips sur chaise',sets:'3 series',reps:'8-10 rep.',rest:60,hold:0,target:'Triceps',detail:'Descente controlee. Jambes tendues = plus difficile, flechies = plus facile.'},
-{name:'Planche laterale',sets:'3 series',reps:'20 sec/cote',rest:30,hold:20,target:'Taille, obliques',detail:'Hanches hautes. Version genoux poses acceptee au debut.'}
+{name:'Squats tempo lent',reps:'10 rep.',rest:60,hold:0,detail:'3 secondes de descente, remontee normale.',steps:['Pieds largeur epaules.','Descente lente sur 3 secondes.','Pause 1 sec en bas.','Remontee normale en expirant.'],tip:'💡 Le tempo lent est le secret de la progression au poids du corps.',erreur:'⚠ Ne pas rebondir en bas — pause obligatoire.'},
+{name:'Pompes — maximum',reps:'max rep.',rest:60,hold:0,detail:'Garder 1-2 reps en reserve. NOTER le nombre.',steps:['Corps aligne, qualite maximale.','Descendre jusqu\'au sol.','Garder 1-2 reps en reserve.','NOTER le nombre.'],tip:'💡 C\'est votre barometre de progression.',erreur:'⚠ Ne jamais sacrifier la qualite pour le nombre.'},
+{name:'Releves de genoux — chaise romaine',reps:'10-12 rep.',rest:60,hold:0,detail:'Controle total. Progresser vers jambes tendues.',steps:['Dos appuye, bras aux poignees.','Genoux vers la poitrine en expirant.','Descente lente.','Progresser vers jambes tendues.'],tip:'💡 Pas d\'elan — tout vient des abdos.',erreur:'⚠ Pas de balancement.'},
+{name:'Good Morning',reps:'12 rep.',rest:45,hold:0,detail:'Flexion hanches, dos droit.',steps:['Debout, mains derriere la tete, dos rigide.','Pencher le buste depuis les hanches jusqu\'a 90.','Sentir l\'etirement des ischio-jambiers.','Revenir en poussant les hanches vers l\'avant.'],tip:'💡 L\'etirement a la descente = la bonne sensation.',erreur:'⚠ Ne JAMAIS arrondir le dos.'},
+{name:'Dips sur chaise',reps:'8-10 rep.',rest:60,hold:0,detail:'Descente controlee. Jambes tendues = plus difficile.',steps:['Mains sur le bord de l\'assise.','Flechir les coudes pour descendre.','Remonter en expirant.','Jambes tendues pour plus de difficulte.'],tip:'💡 Comparez avec la seance du mercredi.',erreur:'⚠ Coudes ne s\'ecartent pas.'},
+{name:'Planche laterale',reps:'20 sec/cote',rest:30,hold:20,detail:'Hanches hautes. Version genoux acceptee au debut.',steps:['Sur le cote, appui sur l\'avant-bras.','Lever les hanches — corps aligne.','Bras libre tendu vers le plafond.','Tenir sans laisser les hanches descendre.'],tip:'💡 Version genoux : tout aussi efficace pour commencer.',erreur:'⚠ Hanches qui s\'affaissent = obliques qui ne travaillent plus.'},
 ]},
-{id:'DI',name:'Dimanche',sub:'Recuperation — Marche & Yoga',tag:'8h30–9h00',icon:'🌸',iconBg:'#EEFAF7',
+{id:'DI',col:'DI',name:'Dim',sub:'Recuperation — Marche & Yoga',tag:'8h30–9h00',icon:'🌸',repos:true,
 why:'La lumiere du matin regule le sommeil et l\'humeur — deux leviers majeurs de la gestion du poids en perimenopause.',
-conseil:'1x/mois : tour de taille + photo de profil. En perimenopause, ces mesures sont plus parlantes que la balance qui fluctue de +-1 kg.',
+conseil:'1x/mois : tour de taille + photo de profil. Plus parlant que la balance qui fluctue de +-1 kg avec les hormones.',
 warmup:[],
 exos:[
-{name:'Marche exterieure douce',sets:'—',reps:'20 min',rest:0,hold:1200,target:'Recuperation, lumiere',detail:'Dehors si possible — la lumiere naturelle du matin cale l\'horloge biologique et ameliore le sommeil du soir.'},
-{name:'Posture de l\'enfant',sets:'1 fois',reps:'90 sec',rest:15,hold:90,target:'Decompression dos',detail:'A genoux, penchee en avant, bras tendus. Respiration lente.'},
-{name:'Torsion allongee',sets:'2 fois',reps:'45 sec/cote',rest:15,hold:45,target:'Dos, detente',detail:'Genou ramene de l\'autre cote, epaules au sol.'},
-{name:'Papillon',sets:'1 fois',reps:'60 sec',rest:15,hold:60,target:'Hanches',detail:'Assise, plantes de pieds jointes, genoux vers le sol en douceur.'},
-{name:'Respiration finale',sets:'—',reps:'3 min',rest:0,hold:180,target:'Detente complete',detail:'Allongee, yeux fermes, respiration abdominale lente. Preparer une bonne nuit et une bonne semaine.'}
-]}
+{name:'Marche exterieure douce',reps:'20 min',rest:0,hold:1200,detail:'Dehors si possible — la lumiere naturelle cale l\'horloge biologique.',steps:['Rythme tranquille, pas de performance.','Respiration libre, epaules relachees.','Profitez de la lumiere naturelle.','20 minutes minimum.'],tip:'💡 La marche matinale ameliore le sommeil du soir.',erreur:''},
+{name:'Posture de l\'enfant',reps:'90 sec',rest:15,hold:90,detail:'A genoux, bras tendus devant, front au sol.',steps:['A genoux, grands orteils joints.','Avancer les bras tendus, front au sol.','Relacher completement le poids du corps.','Respiration lente — chaque expiration allonge la colonne.'],tip:'💡 Decompression vertebrale : plus longtemps, mieux c\'est.',erreur:'⚠ Serviette sous les fesses si les genoux font mal.'},
+{name:'Torsion allongee',reps:'45 sec/cote',rest:15,hold:45,detail:'Genou ramene de l\'autre cote, epaules au sol.',steps:['Allongee sur le dos, bras en croix.','Ramener le genou droit de l\'autre cote.','Epaules au sol.','45 sec puis alterner.'],tip:'💡 Inspirez en position neutre, expirez en laissant descendre.',erreur:'⚠ Ne forcez pas — la gravite suffit.'},
+{name:'Papillon',reps:'60 sec',rest:15,hold:60,detail:'Assise, plantes de pieds jointes, genoux vers le sol.',steps:['Assise, plantes de pieds jointes.','Genoux vers le sol en douceur.','Buste droit ou penche en avant.','Respiration profonde — 60 sec.'],tip:'💡 Ne pas forcer les genoux vers le sol.',erreur:''},
+{name:'Respiration finale',reps:'3 min',rest:0,hold:180,detail:'Allongee, yeux fermes, respiration abdominale lente.',steps:['Allongee sur le dos, yeux fermes.','Respiration abdominale lente.','Inspirer 4 sec, expirer 6 sec.','Laisser le corps se detendre completement.'],tip:'💡 Preparer une bonne nuit et une bonne semaine.',erreur:''},
+]},
 ];
 
 var currentTab=0,doneExos={},timerInterval=null,timerTotal=0,timerLeft=0;
@@ -228,23 +273,51 @@ function showTab(i){
   renderSession(SESSIONS[i]);
 }
 
+function makeCard(ex,i,s,dk,C){
+  var done=dk[i];
+  return '<div class="exo-card'+(done?' done':'')+'" id="card-'+s.id+'-'+i+'" onclick="toggleCard(\''+s.id+'\','+i+')">'
+    +'<div class="exo-card-header">'
+    +'<div class="exo-num'+(done?' is-done':'')+'" style="background:'+(done?'linear-gradient(135deg,#7FCDBB,#A29BFE)':C.light)+';color:'+(done?'#fff':C.badge)+'">'+(done?'&#x2713;':(i+1))+'</div>'
+    +'<div class="exo-info"><div class="exo-name">'+ex.name+'</div>'
+    +'<div class="badge-row">'
+    +'<span class="badge" style="background:'+C.light+';color:'+C.badge+'">'+ex.reps+'</span>'
+    +(ex.hold>0?'<span class="badge" style="background:#fff8e0;color:#b8860b">&#x23F1; '+ex.hold+'s</span>':'')
+    +'</div></div>'
+    +'<span class="exo-chevron">&#x2304;</span></div>'
+    +'<div class="exo-detail"><div class="exo-body">'
+    +'<div class="steps-title" style="color:'+C.bg+'">&#x1F4CB; Technique</div>'
+    +ex.steps.map(function(st,n){return '<div class="step"><div class="step-num" style="background:'+C.bg+'">'+(n+1)+'</div><div class="step-txt">'+st+'</div></div>';}).join('')
+    +(ex.tip?'<div class="tip-box">'+ex.tip+'</div>':'')
+    +(ex.erreur?'<div class="err-box">'+ex.erreur+'</div>':'')
+    +'<div class="btn-row">'
+    +(ex.hold>0?'<button class="btn-timer btn-hold" onclick="event.stopPropagation();startTimer('+ex.hold+',\'&#x1F3CB; Exercice\')">&#x1F3CB; Exercice '+ex.hold+'s</button>':'')
+    +(ex.rest>0?'<button class="btn-timer btn-rest" onclick="event.stopPropagation();startTimer('+ex.rest+',\'&#x23F1; Repos\')">&#x23F1; Repos '+ex.rest+'s</button>':'')
+    +'</div>'
+    +'<button class="btn-done'+(done?' is-done':'')+'" onclick="event.stopPropagation();markDone(\''+s.id+'\','+i+')">'+(done?'&#x21A9; Marquer non fait':'&#x2713; Exercice termin&#233;')+'</button>'
+    +'</div></div></div>';
+}
+
 function renderSession(s){
-  var content=document.getElementById('content');
+  var C=COLORS[s.col];
   var dk=doneExos[s.id]||{};
-  var doneCount=Object.keys(dk).length;
+  var doneCount=Object.keys(dk).filter(function(k){return k.indexOf('__')<0;}).length;
   var total=s.exos.length;
   var pct=total?Math.round(doneCount/total*100):0;
+  var html='';
 
-  var html='<div class="session-header">'
-    +'<div class="session-icon" style="background:'+s.iconBg+'">'+s.icon+'</div>'
+  html+='<div class="session-header">'
+    +'<div class="session-badge" style="background:'+C.grad+'">'
+    +'<span class="s-icon">'+s.icon+'</span>'
+    +'<span class="s-lbl">'+s.name+'</span>'
+    +'</div>'
     +'<div><div class="session-title">'+s.name+' — '+s.sub+'</div>'
-    +'<div class="session-meta"><span class="session-tag">'+s.tag+'</span>'+doneCount+'/'+total+' faits</div></div>'
-    +'</div>';
+    +'<div class="session-meta"><span class="session-tag" style="background:'+C.light+';color:'+C.badge+'">'+s.tag+'</span></div>'
+    +'</div></div>';
 
-  if(total>0){
+  if(!s.repos){
     html+='<div class="progress-wrap">'
-      +'<div class="progress-row"><span class="progress-lbl">Progression</span><span class="progress-pct">'+pct+'%</span></div>'
-      +'<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="progress-row"><span class="progress-lbl">Progression</span><span class="progress-pct" style="color:'+C.bg+'">'+pct+'%</span></div>'
+      +'<div class="progress-track"><div class="progress-fill" style="background:'+C.grad+';width:'+pct+'%"></div></div>'
       +'</div>';
   }
 
@@ -252,55 +325,50 @@ function renderSession(s){
     html+='<div class="why-box"><div class="why-title">&#x1F9EC; Pourquoi cette seance</div>'+s.why+'</div>';
   }
 
-  if(s.warmup.length>0){
+  if(s.warmup&&s.warmup.length>0){
     html+='<div class="warm-section"><div class="warm-title">&#x1F525; Echauffement</div>';
     s.warmup.forEach(function(w){
-      html+='<div class="warm-item">'
-        +'<div class="warm-item-txt">'+w.n+'<br><span class="warm-item-sub">'+w.d+'</span></div>'
-        +'<span class="warm-badge">'+w.b+'</span></div>';
+      html+='<div class="warm-item"><div class="warm-item-txt">'+w.n+'<br><span class="warm-item-sub">'+w.d+'</span></div>'
+        +'<span class="warm-badge" style="background:'+C.bg+'">'+w.b+'</span></div>';
     });
     html+='</div>';
   }
 
-  html+='<div class="exo-list">';
-  s.exos.forEach(function(ex,i){
-    var done=dk[i];
-    html+='<div class="exo-card'+(done?' done':'')
-      +'" id="card-'+s.id+'-'+i+'" onclick="toggleCard(\''+s.id+'\','+i+')">'
-      +'<div class="exo-card-header">'
-      +'<div class="exo-num'+(done?' is-done':'')+'\">'+(done?'&#x2713;':(i+1))+'</div>'
-      +'<div class="exo-info">'
-      +'<div class="exo-name">'+ex.name+'</div>'
-      +'<div class="badge-row">'
-      +'<span class="badge badge-s">'+ex.sets+'</span>'
-      +(ex.target?'<span class="badge badge-t">'+ex.target+'</span>':'')
-      +'</div></div>'
-      +'<span class="exo-chevron">&#x2304;</span></div>'
-      +'<div class="exo-detail">'
-      +'<div class="exo-detail-txt">'+ex.detail+'</div>'
-      +'<div class="chips">'
-      +'<span class="chip chip-s">'+ex.sets+'</span>'
-      +'<span class="chip chip-r">'+ex.reps+'</span>'
-      +(ex.rest>0?'<span class="chip chip-t">Repos '+ex.rest+'s</span>':'')
-      +'</div>'
-      +'<div class="btn-row">'
-      +(ex.hold>0?'<button class="btn-timer btn-hold" onclick="event.stopPropagation();startTimer('+ex.hold+',\'&#x1F3CB; Exercice\')">&#x1F3CB; Exercice '+ex.hold+'s</button>':'')
-      +(ex.rest>0?'<button class="btn-timer btn-rest" onclick="event.stopPropagation();startTimer('+ex.rest+',\'&#x23F1; Repos\')">&#x23F1; Repos '+ex.rest+'s</button>':'')
-      +'</div>'
-      +'<button class="btn-done'+(done?' is-done':'')
-      +'" onclick="event.stopPropagation();markDone(\''+s.id+'\','+i+')">'
-      +(done?'&#x21A9; Marquer non fait':'&#x2713; Exercice termine')
-      +'</button>'
+  if(s.repos){
+    html+='<div class="repos-wrap"><div class="repos-card" style="border-color:'+C.bg+'33">'
+      +'<div class="repos-icon">🌸</div>'
+      +'<div class="repos-title">Journee de recuperation</div>'
+      +'<div class="repos-txt">Marche douce + etirements complets.</div>'
       +'</div></div>';
-  });
-  html+='</div>';
-
-  if(s.conseil){
-    html+='<div class="conseil"><div class="conseil-title">&#x1F4A1; Conseil</div>'+s.conseil+'</div>';
   }
 
-  content.innerHTML=html;
-  content.scrollTop=0;
+  if(!s.repos){
+    var curRound=doneExos['__round_'+s.id]||1;
+    html+='<div class="round-bar">'
+      +'<span class="round-lbl">Tour</span>'
+      +[1,2,3].map(function(r){
+        return '<button class="round-btn'+(curRound===r?' active':'')+'" '
+          +'style="'+(curRound===r?'background:'+C.bg+';color:#fff;border-color:'+C.bg:'background:#fff;color:'+C.badge+';border-color:'+C.badge)+'" '
+          +'onclick="setRound(\''+s.id+'\','+r+')">'+r+'</button>';
+      }).join('')
+      +'<button class="round-rest-btn" style="background:'+C.grad+'" onclick="startTimer(90,\'&#x23F1; Repos entre les tours\')">&#x23F1; Repos 90s</button>'
+      +'</div>';
+  }
+
+  html+='<div class="exo-list">';
+  s.exos.forEach(function(ex,i){html+=makeCard(ex,i,s,dk,C);});
+  html+='</div>';
+
+  html+='<div class="conseil" style="background:'+C.light+';border-color:'+C.bg+'33">'
+    +'<div class="conseil-title" style="color:'+C.bg+'">&#x1F4A1; Conseil</div>'+s.conseil+'</div>';
+
+  document.getElementById('content').innerHTML=html;
+  document.getElementById('content').scrollTop=0;
+}
+
+function setRound(sid,r){
+  doneExos['__round_'+sid]=r;
+  renderSession(SESSIONS[currentTab]);
 }
 
 function toggleCard(sid,i){
@@ -314,9 +382,9 @@ function markDone(sid,i){
   if(!doneExos[sid])doneExos[sid]={};
   if(doneExos[sid][i])delete doneExos[sid][i];
   else doneExos[sid][i]=true;
-  var scrollY=document.getElementById('content').scrollTop;
+  var sc=document.getElementById('content').scrollTop;
   renderSession(SESSIONS[currentTab]);
-  document.getElementById('content').scrollTop=scrollY;
+  document.getElementById('content').scrollTop=sc;
   var card=document.getElementById('card-'+sid+'-'+i);
   if(card)card.classList.add('open');
 }
@@ -337,7 +405,7 @@ function updateTimer(){
   document.getElementById('timer-num').textContent=timerLeft;
   var fg=document.getElementById('ring-fg');
   fg.style.strokeDashoffset=534*(1-timerLeft/timerTotal);
-  fg.style.stroke=timerLeft<=5?'#E84A5F':timerLeft<=10?'#E8A87C':'#C76B98';
+  fg.style.stroke=timerLeft<=5?'#EF5350':timerLeft<=10?'#F9A825':'#9C4A87';
 }
 
 function stopTimer(){
