@@ -29,9 +29,9 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 .tab.active .tab-sub{color:var(--sun)}
 #content{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
 .session-header{padding:14px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.session-badge{width:48px;height:48px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;line-height:1.1}
-.session-badge .s-icon{font-size:22px}
-.session-badge .s-lbl{font-size:9px;color:#fff;opacity:.85;text-transform:uppercase;letter-spacing:.4px;margin-top:2px;text-align:center;white-space:nowrap;}
+.session-badge{width:56px;height:56px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;line-height:1.1}
+.session-badge .s-icon{font-size:20px}
+.session-badge .s-lbl{font-size:8px;color:#fff;opacity:.9;text-transform:uppercase;letter-spacing:.3px;margin-top:2px;text-align:center;white-space:nowrap;width:100%;padding:0 4px}
 .session-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:3px}
 .session-meta{font-size:11px;color:var(--txt2)}
 .session-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:4px}
@@ -183,7 +183,7 @@ var DAYS=[
 
 var SESSIONS=[
 /* ─── A — LUNDI ─── */
-{id:'A',letter:'A',col:'A',day:'Lundi',time:'7h15',
+{id:'A',letter:'A',col:'A',day:'Lun',time:'7h15',
  name:'Force Dos & Gainage',desc:'Chaîne postérieure, stabilité vertébrale',
  conseil:'Rentrez le nombril à chaque exercice. La technique protège votre dos — qualité avant quantité.',
  warmup:[
@@ -220,7 +220,7 @@ var SESSIONS=[
  ]},
 
 /* ─── B — MARDI ─── */
-{id:'B',letter:'B',col:'B',day:'Mardi',time:'7h15',
+{id:'B',letter:'B',col:'B',day:'Mar',time:'7h15',
  name:'Abdominaux & Lombaires',desc:'Sangle abdominale profonde, gainage dynamique',
  conseil:'Le vacuum abdominal renforce le transverse — votre gaine naturelle. Pratiquez-le aussi debout dans la journée.',
  warmup:[
@@ -292,7 +292,7 @@ var SESSIONS=[
  ]},
 
 /* ─── D — JEUDI ─── */
-{id:'D',letter:'D',col:'D',day:'Jeudi',time:'7h15',
+{id:'D',letter:'D',col:'D',day:'Jeu',time:'7h15',
  name:'Haut du Corps & Équilibre',desc:'Bras, épaules, dos — silhouette affinée',
  conseil:'Pompes négatives : la descente lente sur 5 sec est ce qui va débloquer ta force. Dans 3 semaines tu feras tes premières pompes complètes.',
  warmup:[
@@ -328,7 +328,7 @@ var SESSIONS=[
  ]},
 
 /* ─── E — SAMEDI ─── */
-{id:'E',letter:'E',col:'E',day:'Samedi',time:'8h30',
+{id:'E',letter:'E',col:'E',day:'Sam',time:'8h30',
  name:'Full Body + Cardio Sol',desc:'Force complète, cardio sans impact, mobilité',
  conseil:'Séance du samedi matin à tête reposée : qualité et intensité maximales. Finissez par les étirements complets.',
  warmup:[
