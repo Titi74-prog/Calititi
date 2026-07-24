@@ -560,13 +560,18 @@ function markDone(sid,i){
   if(card)card.classList.add('open');
 }
 
+var wakeLock=null;
+async function requestWakeLock(){try{if('wakeLock' in navigator){wakeLock=await navigator.wakeLock.request('screen');}}catch(e){}}
+function releaseWakeLock(){try{if(wakeLock){wakeLock.release();wakeLock=null;}}catch(e){}}
+
 function startTimer(sec,label){
   timerTotal=sec;timerLeft=sec;
   document.getElementById('timer-label').textContent=label||'Repos';
   document.getElementById('timer-overlay').classList.add('show');
   updateTimer();
+  requestWakeLock();
   clearInterval(timerInterval);
-  timerInterval=setInterval(function(){timerLeft--;updateTimer();if(timerLeft<=0){clearInterval(timerInterval);setTimeout(stopTimer,900);}},1000);
+  timerInterval=setInterval(function(){timerLeft--;updateTimer();if(timerLeft<=0){clearInterval(timerInterval);releaseWakeLock();setTimeout(stopTimer,900);}},1000);
 }
 function updateTimer(){
   document.getElementById('timer-num').textContent=timerLeft;
@@ -574,7 +579,7 @@ function updateTimer(){
   fg.style.strokeDashoffset=534*(1-timerLeft/timerTotal);
   fg.style.stroke=timerLeft<=5?'#FF6B6B':timerLeft<=10?'#ffd93d':'#FF6B35';
 }
-function stopTimer(){clearInterval(timerInterval);document.getElementById('timer-overlay').classList.remove('show');}
+function stopTimer(){clearInterval(timerInterval);releaseWakeLock();document.getElementById('timer-overlay').classList.remove('show');}
 
 buildTabs();
 renderSession(SESSIONS[0]);
